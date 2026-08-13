@@ -1,0 +1,41 @@
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Token motagen för inlog mislyckades: [object Object]"}
+{"level":"error","message":"Fel vid hämtning av token: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Data motagen ej ok [object Response]","timestamp":"2026-08-12T09:06:39.836Z"}
+{"level":"error","message":"Data motagen ej ok [object Response]","timestamp":"2026-08-12T09:07:15.679Z"}
+{"level":"error","message":"Data motagen ej ok [object Promise]","timestamp":"2026-08-12T09:07:20.391Z"}
+{"level":"error","message":"GetAccept auth failed","responseBody":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"status":400,"timestamp":"2026-08-12 11:16:26"}
+{"level":"error","message":"Data motagen ej ok [object Promise]","timestamp":"2026-08-12T09:19:24.305Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:20:48.972Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:20:58.695Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:22:16.242Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:22:49.095Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:24:59.293Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:25:11.357Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:26:20.277Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:27:14.081Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:31:16.144Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:33:05.773Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:35:41.734Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:41:41.837Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:36.334Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:37.078Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:42.907Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to localhost:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:42:14.641Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to localhost\\SQLEXPRESS in 15000ms","timestamp":"2026-08-12T12:52:33.657Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:53:52.313Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:59:09.542Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:59:34.134Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T13:00:32.978Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T13:01:04.739Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:05:10.053Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:19:23.915Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:22:08.908Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:00:28.925Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:00:29.725Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:05:23.756Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:06:47.856Z"}

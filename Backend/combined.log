@@ -1,0 +1,103 @@
+{"level":"info","message":"Servern kör på port 3000"}
+{"level":"info","message":"Servern kör på port 3000"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"info","message":"Servern kör på port 3000"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Token motagen för inlog mislyckades: [object Object]"}
+{"level":"error","message":"Fel vid hämtning av token: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"}
+{"level":"info","message":"Servern kör på port 3000"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"info","message":"Försökte loga in utan anligen lösenord eller mail."}
+{"level":"error","message":"Data motagen ej ok [object Response]"}
+{"level":"info","message":"Försökte loga in utan anligen lösenord eller mail."}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:05:37.605Z"}
+{"level":"info","message":"Försökte loga in utan anligen lösenord eller mail.","timestamp":"2026-08-12T09:05:49.056Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:06:30.822Z"}
+{"level":"error","message":"Data motagen ej ok [object Response]","timestamp":"2026-08-12T09:06:39.836Z"}
+{"level":"error","message":"Data motagen ej ok [object Response]","timestamp":"2026-08-12T09:07:15.679Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:07:18.940Z"}
+{"level":"error","message":"Data motagen ej ok [object Promise]","timestamp":"2026-08-12T09:07:20.391Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12 11:12:24"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12 11:12:25"}
+{"email":"beatrice-olsson@hotmail.com","level":"info","message":"GetAccept auth request completed","ok":false,"responseBody":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"status":400,"timestamp":"2026-08-12 11:16:26"}
+{"level":"error","message":"GetAccept auth failed","responseBody":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"status":400,"timestamp":"2026-08-12 11:16:26"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:16:53.720Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:16:54.171Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:17:16.215Z"}
+{"level":"error","message":"Data motagen ej ok [object Promise]","timestamp":"2026-08-12T09:19:24.305Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:20:29.237Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:20:48.972Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:20:58.695Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:22:16.242Z"}
+{"level":"info","message":"Försökte logga in utan email eller lösenord.","timestamp":"2026-08-12T09:22:34.446Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:22:49.095Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:24:10.275Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:24:47.396Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:24:59.293Z"}
+{"level":"error","message":"Data motagen ej ok","timestamp":"2026-08-12T09:25:11.357Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T09:26:17.151Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:26:20.277Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:27:14.081Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:31:16.144Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:33:05.773Z"}
+{"level":"info","message":"Försökte logga in utan email eller lösenord.","timestamp":"2026-08-12T09:34:40.160Z"}
+{"level":"info","message":"Försökte logga in utan email eller lösenord.","timestamp":"2026-08-12T09:35:02.730Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:35:41.734Z"}
+{"errorDitail":{"code":400,"errors":"Invalid credentials or account locked","message":"Invalid credentials or account locked"},"level":"error","message":"Data motagen ej ok","status":400,"timestamp":"2026-08-12T09:41:41.837Z"}
+{"level":"info","message":"Försökte logga in utan email eller lösenord.","timestamp":"2026-08-12T09:53:05.718Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T11:17:48.509Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T11:17:48.964Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:07:47.257Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:29:12.887Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:29:13.336Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:36.334Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:41:36.347Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:37.078Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:41:37.090Z"}
+{"level":"error","message":"DB kunde inte connecta: TypeError [ERR_INVALID_ARG_TYPE]: The \"listener\" argument must be of type function. Received undefined","timestamp":"2026-08-12T12:41:42.907Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:41:42.918Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:42:14.630Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to localhost:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:42:14.641Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:52:18.653Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to localhost\\SQLEXPRESS in 15000ms","timestamp":"2026-08-12T12:52:33.657Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:53:52.304Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:53:52.313Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:59:09.532Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:59:09.542Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T12:59:34.124Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T12:59:34.134Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T13:00:32.968Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T13:00:32.978Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T13:01:04.730Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Failed to connect to 127.0.0.1:1433 - Could not connect (sequence)","timestamp":"2026-08-12T13:01:04.739Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T13:05:10.010Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:05:10.053Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T13:19:23.875Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:19:23.915Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T13:22:08.876Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T13:22:08.908Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:00:28.896Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:00:28.925Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:00:29.692Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:00:29.725Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:05:23.722Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:05:23.756Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:06:47.827Z"}
+{"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:06:47.856Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:10:13.216Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-12T14:10:13.252Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:13:33.177Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-12T14:13:33.215Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:13:48.956Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-12T14:13:48.990Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:26:32.001Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-12T14:26:32.038Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-12T14:27:10.273Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-12T14:27:10.311Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T06:26:55.921Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T06:26:55.964Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T06:26:56.651Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T06:26:56.683Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T06:40:09.046Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T06:40:09.082Z"}
