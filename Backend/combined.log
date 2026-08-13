@@ -101,3 +101,95 @@
 {"level":"info","message":"DB conected","timestamp":"2026-08-13T06:26:56.683Z"}
 {"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T06:40:09.046Z"}
 {"level":"info","message":"DB conected","timestamp":"2026-08-13T06:40:09.082Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T06:42:06.564Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T06:42:06.632Z"}
+{"errorDitail":{"code":429,"errors":"Auth is Throttled! Please try again later.","message":"Auth is Throttled! Please try again later."},"level":"error","message":"Data motagen ej ok","status":429,"timestamp":"2026-08-13T06:42:06.755Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T07:46:29.414Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T07:46:29.448Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T07:46:30.188Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T07:46:30.248Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T08:42:27.068Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T08:42:27.125Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T08:54:08.998Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T08:54:09.038Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T08:54:09.799Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T08:54:09.835Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T10:30:46.835Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:30:46.904Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T10:30:47.579Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:30:47.614Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T10:50:22.564Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:50:22.601Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:50:22.604Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T10:50:34.296Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:50:34.332Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:50:34.337Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T10:53:14.747Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:53:14.784Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T10:53:14.785Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:00:01.594Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:01.651Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:01.651Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:00:20.817Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:20.859Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:20.860Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:00:34.106Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:34.143Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:00:34.143Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:20:43.780Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:43.820Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:43.821Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:20:45.670Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:45.717Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:45.717Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:20:46.794Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:46.833Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:20:46.834Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:22:33.688Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:22:33.728Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:22:33.729Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:22:35.052Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:22:35.091Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:22:35.091Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:28:42.469Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:28:42.511Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:28:42.511Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:29:39.504Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:29:39.544Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:29:39.545Z"}
+{"level":"error","message":"Ny kontackt kunnde inte sparas i db: db.request is not a function","timestamp":"2026-08-13T11:31:26.169Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:31:26.170Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:33:06.104Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:33:06.144Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:33:06.145Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:33:06.840Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:33:06.877Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:33:06.877Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:33:12.580Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:34:39.127Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:39.166Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:39.167Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:34:41.932Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:41.969Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:41.970Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:34:50.491Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:50.526Z"}
+{"level":"info","message":"DB conected","timestamp":"2026-08-13T11:34:50.526Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:34:58.661Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T11:42:31.475Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T11:42:31.514Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T11:42:31.515Z"}
+{"level":"info","message":"Ny kontackt sparades i db.","timestamp":"2026-08-13T11:43:47.401Z"}
+{"level":"info","message":"Ny kontackt sparades i db.","timestamp":"2026-08-13T11:50:58.504Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T12:06:47.689Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:06:47.731Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:06:47.732Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T12:06:48.494Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:06:48.531Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:06:48.532Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T12:17:46.725Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:17:46.762Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:17:46.763Z"}
+{"level":"info","message":"Servern kör på port 3000","timestamp":"2026-08-13T12:20:47.951Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:20:48.027Z"}
+{"level":"info","message":"DB connected","timestamp":"2026-08-13T12:20:48.028Z"}

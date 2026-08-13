@@ -1,37 +1,27 @@
-import { Connection } from "tedious";
-import logger from "./logger.js";
-
+import sql from 'mssql';
+import logger from './logger.js';
 
 const config = {
+    user: 'sa',
+    password: 'Gaia',
     server: 'localhost',
-    authentication: {
-        type: 'default',
-        options: {
-            userName: 'sa',
-            password: 'Gaia',
-        }
-    },
+    port: 1433,
+    database: 'GetAcceptDB2026',
     options: {
-        port: 1433,
-        database: 'GetAcceptDB2026',
         trustServerCertificate: true
     }
-}
+};
 
-function KopplaUppTillDB () {
-    const connection = new Connection(config);
-
-    connection.on('connect', (error) => {
-        if (error) {
-            logger.error(`DB kunde inte connecta: ${error}`);
-        } else {
-            logger.info('DB conected');
-        }
-    });
-
-    connection.connect();
-
-    return connection;
+function KopplaUppTillDB() {
+    return sql.connect(config)
+        .then(pool => {
+            logger.info('DB connected');
+            return pool;
+        })
+        .catch(error => {
+            logger.error(`DB kunde inte connecta: ${error.message}`);
+            throw error;
+        });
 }
 
 export default KopplaUppTillDB;
