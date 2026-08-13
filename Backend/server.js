@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import logger from './config/logger.js';
-import { loginUser } from './loginuser.js';
+import { loginUser } from './controller/loginuser.js';
 import KopplaUppTillDB from './config/DBConetion.js';
+import userDataRouter from './routes/userData.js'
 
 const app = express();
 KopplaUppTillDB();
@@ -15,6 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login', loginUser)
+app.use('/userData', userDataRouter);
 
 app.listen(3000, () => {
     logger.info('Servern kör på port 3000');
