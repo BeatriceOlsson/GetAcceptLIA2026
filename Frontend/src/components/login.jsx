@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
+import { useLogdIn } from "../context/logdInContext";
 
 function Login() {
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const { logdIn } = useLogdIn();
 
   const emailInput = useRef(null);
   const passwordIput = useRef(null);
@@ -25,12 +27,12 @@ function Login() {
         return;
       }
 
-      localStorage.setItem("getaccept_token", data.token);
-      setErrorMessage(null);
-
-      alert("Du logades in!"); //Laga till att man kommer vidare till skappa sidan
+      logdIn(data.token);
+      setErrorMessage("");
+      alert("Du logades in!");
     } catch (error) {
-      console.log("Något gick fel: " + error);
+      setErrorMessage("Något gick fel vid inloggningen.");
+      console.error("Något gick fel: " + error);
     }
   };
 
