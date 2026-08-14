@@ -1,4 +1,4 @@
-import logger from './config/logger.js';
+import logger from '../config/logger.js';
 
 async function loginUser ( req, res) {
     const {email, password} = req.body;
@@ -28,7 +28,7 @@ async function loginUser ( req, res) {
             return res.status(400).json({message: 'Inlogning lyckades men token saknas.'});
         }
 
-        res.json({message: `Inlogning lyckades ${data.token}`, token: data.access_token});
+        res.json({message: `Inlogning lyckades`, token: data.access_token, expiers: data.expiers_in});
     } catch (error) {
         logger.error('Fel vid hämtning av token från GetAccept', {
             message: error.message,

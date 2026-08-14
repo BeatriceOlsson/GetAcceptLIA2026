@@ -39,3 +39,8 @@
 {"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:00:29.725Z"}
 {"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:05:23.756Z"}
 {"level":"error","message":"DB kunde inte connecta: Error: Login failed for user 'sa'.","timestamp":"2026-08-12T14:06:47.856Z"}
+{"errorDitail":{"code":429,"errors":"Auth is Throttled! Please try again later.","message":"Auth is Throttled! Please try again later."},"level":"error","message":"Data motagen ej ok","status":429,"timestamp":"2026-08-13T06:42:06.755Z"}
+{"level":"error","message":"Ny kontackt kunnde inte sparas i db: db.request is not a function","timestamp":"2026-08-13T11:31:26.169Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:31:26.170Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:33:12.580Z"}
+{"level":"error","message":"Kontackt kunde inte sparas: db.request is not a function","timestamp":"2026-08-13T11:34:58.661Z"}
