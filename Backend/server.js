@@ -8,7 +8,7 @@ import userDataRouter from './routes/userData.js'
 const app = express();
 KopplaUppTillDB();
 
-app.use(cors({origin: 'http://localhost:5174'}));
+app.use(cors({origin: 'http://localhost:5173'}));
 app.use(express.json());
 
 app.get('/', (req, res) => {

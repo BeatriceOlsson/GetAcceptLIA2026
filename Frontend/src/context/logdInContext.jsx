@@ -1,30 +1,44 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
-const LogdInContext = createContext();
+const STORAGE_KEY = "getaccept_token";
+const LogdInContext = createContext(null);
 
-export function LogInProvider({ children }) {
-  const [isLogdIn, setIsLogdIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("getaccept_token");
-
-    if (token) {
-      setIsLogdIn(true);
-    } else {
-      setIsLogdIn(false);
-    }
-  }, []);
+export function LogdInProvider({ children }) {
+  const [isLogdIn, setIsLogdIn] = useState(() => {
+    const token = localStorage.getItem(STORAGE_KEY);
+    return !!token;
+  });
+  const [loading, setLoading] = useState(false);
 
   const logdIn = (token) => {
-    localStorage.setItem("getaccept_token", token);
+    if (!token) return;
+    localStorage.setItem(STORAGE_KEY, token);
     setIsLogdIn(true);
+    setLoading(false);
   };
 
+  const logOut = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    setIsLogdIn(false);
+    setLoading(false);
+  };
+
+  const value = useMemo(
+    () => ({ isLogdIn, logdIn, logOut, loading }),
+    [isLogdIn, loading]
+  );
+
   return (
-    <LogdInContext.Provider value={logdIn}>{children}</LogdInContext.Provider>
+    <LogdInContext.Provider value={value}>{children}</LogdInContext.Provider>
   );
 }
 
-export function LogdIn() {
-  return useContext(LogdInContext);
+export function useLogdIn() {
+  const context = useContext(LogdInContext);
+
+  if (!context) {
+    throw new Error("useLogdIn must be used inside LogdInProvider");
+  }
+
+  return context;
 }
