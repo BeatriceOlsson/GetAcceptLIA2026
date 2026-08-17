@@ -6,18 +6,20 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        const data = await getContact(req.body);
-        res.status(200).json({message:'Contackt hittades', data: data});
+        const searchUser = req.query.s ?? '';
+        const data = await getContact(searchUser);
+        res.status(200).json({ message: 'Contackt hittades', data });
     } catch (error) {
-        res.status(500).json({message: 'Kontackt kunnde inte hittas.'});
+        res.status(500).json({ message: 'Kontackt kunne inte hittas.' });
     }
 })
 
 router.post('/', async (req, res) => {
+    
     const email = req.body.email ?? req.body.userEmail;
     const mobile = req.body.mobile ?? req.body.userMobile;
-
-    if(!req.body || !email || !mobile) {
+   
+    if(!email || !mobile) {
         return res.status(400).json({ message:'Email och mobile behöver vara ifylt.'})
     }
 
@@ -33,6 +35,7 @@ router.post('/', async (req, res) => {
         logger.error(`Kontackt kunde inte sparas: ${error.message}`);
         res.status(500).json({ message: 'Kontackt kunde inte sparas.'});
     }
+  
 })
 
 export default router;

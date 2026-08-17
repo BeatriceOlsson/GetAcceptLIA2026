@@ -67,7 +67,7 @@ function Login() {
         />
         <button
           type="submit"
-          className="border-4 border-blue-900 rounded-sm w-40 h-10 mt-4 m-auto "
+          className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto "
         >
           Logga in
         </button>

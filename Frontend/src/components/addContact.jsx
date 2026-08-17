@@ -27,7 +27,8 @@ function AddContact() {
     try {
       const responseNode = await fetch("http://localhost:3000/userData", {
         method: "POST",
-        body: JSON.stringify({ fromForm }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fromForm),
       });
       const data = await responseNode.json();
 
@@ -35,7 +36,7 @@ function AddContact() {
         setErrorMasage(data.message || "Okänt fel uppstog");
         return;
       }
-
+      console.log("återställer värderna");
       setErrorMasage("");
       setFromForm({ email: "", mobile: "", firstName: "", lastName: "" });
       alert("Person sparadess i db"); //Läg till att man tars till en sida
@@ -90,17 +91,26 @@ function AddContact() {
           onChange={handleInputChange}
           className="rounded-sm w-80 h-9 p-2"
         />
-        <button
-          type="submit"
-          className="border-4 border-blue-900 rounded-sm w-40 h-10 mt-4 m-auto "
-        >
-          Läg till
-        </button>
-        <button className="border-4 border-blue-900 rounded-sm w-40 h-10 mt-4 m-auto ">
-          Avbryt
-        </button>
-        {/*Läg till att man får tillbacka */}
-        {errorMesage && <p>{errorMesage}</p>}
+        <div className="flex gap-2">
+          <button
+            type="submit"
+            className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto"
+          >
+            Läg till
+          </button>
+          <button
+            type="reset"
+            className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto "
+          >
+            Avbryt
+          </button>
+        </div>
+        {/*Läg till att man får tillbacka till sidan för forms */}
+        {errorMesage && (
+          <p className="text-lg text-red-800 font-medium absolute bottom-0 m-auto">
+            {errorMesage}
+          </p>
+        )}
       </form>
     </div>
   );
