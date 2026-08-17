@@ -31,18 +31,18 @@ async function addContact (userData) {
 
 async function getContact(userData) {
     try {
+        const searchValue = (userData ?? '').trim();
         const db = await dbConection;
-        const email = userData?.userEmail ?? userData?.email;
 
-        const fetch = await db.request()
-        .input('email', sql.VarChar(255), email)
-        .query(`SELECT * FROM userContact WHERE userEmail = @email`)
-
-        if(fetch.recordset.length === 0) {
-            return null;
+        if (!searchValue) {
+            return [];
         }
 
-        return fetch.recordset[0];
+        const result = await db.request()
+            .input('email', sql.VarChar(255), `%${searchValue}%`)
+            .query(`SELECT * FROM userContact WHERE userEmail LIKE @email ORDER BY userEmail`);
+
+        return result.recordset || [];
     } catch (error) {
         throw error;
     }
