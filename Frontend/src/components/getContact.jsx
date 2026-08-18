@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-function GetContact() {
+function GetContact({ contactToRecipients }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedContact, setselectedContact] = useState(null);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -42,9 +43,21 @@ function GetContact() {
     return () => clearTimeout(timeoutId);
   }, [search]);
 
+  const sendContackt = async (e) => {
+    e.preventDefault();
+    if (!selectedContact) {
+      console.log("Data saknas");
+      return;
+    }
+    contactToRecipients(selectedContact);
+    setResults([]);
+    setSearch("");
+    setselectedContact(null);
+  };
+
   return (
-    <div className="flex items-center justify-center flex-col min-h-screen bg-blue-100 gap-9 border-4">
-      <form className=" flex flex-col relative pb-14 w-100 pr-36">
+    <div className="w-full max-w-s flex flex-col gap-4 m-2">
+      <form className=" flex flex-col relative pb-14 max-w-[500px] ">
         <label htmlFor="contact-search" className="text-xl m-1">
           Sök kontakt:
         </label>
@@ -57,19 +70,22 @@ function GetContact() {
         />
         <div className="absolute top-5 right-0">
           <button
-            className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto"
-            /*onClick={Skappa  context som har kolla pådetta och kan skicka info mellan components}*/
+            className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 right-11"
+            onClick={sendContackt}
           >
             Läg till kontackt
           </button>
         </div>
         {results.length > 0 ? (
-          <ul className="absolute top-20 left-1 bg-blue-100">
+          <ul className="absolute top-20 left-1 bg-blue-100 ease-in-out z-50">
             {results.map((person, index) => (
               <li
                 key={`${person.userEmail || "contact"}-${index}`}
                 className="flex flex-row justify-between w-80 p-1 cursor-pointer"
-                onClick={() => setSearch(person.userEmail)}
+                onClick={() => {
+                  setSearch(person.userEmail);
+                  setselectedContact(person);
+                }}
               >
                 <p className="text-l m-1">{person.userEmail}</p>
                 <p className="text-l m-1">
