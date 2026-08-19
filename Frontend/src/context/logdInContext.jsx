@@ -23,9 +23,13 @@ export function LogdInProvider({ children }) {
     setLoading(false);
   };
 
+  const getToken = () => {
+    return localStorage.getItem(STORAGE_KEY);
+  };
+
   const value = useMemo(
-    () => ({ isLogdIn, logdIn, logOut, loading }),
-    [isLogdIn, loading]
+    () => ({ isLogdIn, logdIn, logOut, loading, getToken }),
+    [isLogdIn, loading],
   );
 
   return (
