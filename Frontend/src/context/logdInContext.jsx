@@ -1,7 +1,7 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 const STORAGE_KEY = "getaccept_token";
-const LogdInContext = createContext(null);
+export const LogdInContext = createContext(null);
 
 export function LogdInProvider({ children }) {
   const [isLogdIn, setIsLogdIn] = useState(() => {
@@ -35,14 +35,4 @@ export function LogdInProvider({ children }) {
   return (
     <LogdInContext.Provider value={value}>{children}</LogdInContext.Provider>
   );
-}
-
-export function useLogdIn() {
-  const context = useContext(LogdInContext);
-
-  if (!context) {
-    throw new Error("useLogdIn must be used inside LogdInProvider");
-  }
-
-  return context;
 }

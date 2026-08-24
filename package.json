@@ -20,5 +20,13 @@
   "homepage": "https://github.com/BeatriceOlsson/GetAcceptLIA2026#readme",
   "devDependencies": {
     "@types/node": "^26.2.0"
+  },
+  "dependencies": {
+    "@uppy/core": "^5.2.0",
+    "@uppy/dashboard": "^5.1.1",
+    "@uppy/react": "^5.2.0",
+    "@uppy/url": "^5.1.0",
+    "@uppy/xhr-upload": "^5.2.0",
+    "multer": "^2.2.0"
   }
 }
