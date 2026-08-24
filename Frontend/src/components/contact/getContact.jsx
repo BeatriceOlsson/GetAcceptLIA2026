@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { BlueButton } from "../smalComponents/blueButton";
 
-function GetContact({ contactToRecipients }) {
+function GetContact({ contactToRecipients, addContacktPage }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [selectedContact, setselectedContact] = useState(null);
@@ -49,7 +50,8 @@ function GetContact({ contactToRecipients }) {
       console.log("Data saknas");
       return;
     }
-    contactToRecipients(selectedContact);
+    const contact = { ...selectedContact };
+    contactToRecipients(contact);
     setResults([]);
     setSearch("");
     setselectedContact(null);
@@ -57,7 +59,10 @@ function GetContact({ contactToRecipients }) {
 
   return (
     <div className="w-full max-w-s flex flex-col gap-4 m-2">
-      <form className=" flex flex-col relative pb-14 max-w-[500px] ">
+      <form
+        onSubmit={sendContackt}
+        className=" flex flex-col relative pb-14 max-w-[500px] "
+      >
         <label htmlFor="contact-search" className="text-xl m-1">
           Sök kontakt:
         </label>
@@ -69,12 +74,14 @@ function GetContact({ contactToRecipients }) {
           className="rounded-sm w-80 h-9 p-2 static"
         />
         <div className="absolute top-5 right-0">
-          <button
-            className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 right-11"
-            onClick={sendContackt}
-          >
-            Läg till kontackt
-          </button>
+          <div className="flex flex-col">
+            <BlueButton type="submit" buttonText={"Läg till mottagare"} />
+            <BlueButton
+              type="button"
+              buttonClick={addContacktPage}
+              buttonText={"Läg till kontakt"}
+            />
+          </div>
         </div>
         {results.length > 0 ? (
           <ul className="absolute top-20 left-1 bg-blue-100 ease-in-out z-50">

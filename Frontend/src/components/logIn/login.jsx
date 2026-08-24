@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
-import { useLogdIn } from "../context/logdInContext";
+import { useLogdIn } from "../../hooks/logInHook";
+import { BlueButton } from "../smalComponents/blueButton";
+import { InputField } from "../smalComponents/inputFiled";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -29,7 +31,6 @@ function Login() {
 
       logdIn(data.token);
       setErrorMessage("");
-      alert("Du logades in!");
     } catch (error) {
       setErrorMessage("Något gick fel vid inloggningen.");
       console.error("Något gick fel: " + error);
@@ -45,32 +46,20 @@ function Login() {
           Vänlligen logga in!
         </h3>
       </div>
-      <form
-        onSubmit={handelSubmitt}
-        className=" flex flex-col relative pb-14 w-100"
-      >
-        <label htmlFor="email" className="text-xl m-1">
-          Email:
-        </label>
-        <input
-          type="text"
-          ref={emailInput}
-          className="rounded-sm w-80 h-9 p-2"
+      <form className=" flex flex-col relative pb-14 w-100">
+        <InputField
+          labelHTML={"email"}
+          labelName={"Email:"}
+          labelType={"email"}
+          labelRef={emailInput}
         />
-        <label htmlFor="password" className="text-xl m-1">
-          Lösenord
-        </label>
-        <input
-          type="password"
-          ref={passwordIput}
-          className="rounded-sm w-80 h-9 gap-2 p-2"
+        <InputField
+          labelHTML={"password"}
+          labelName={"Lösenord"}
+          labelType={"password"}
+          labelRef={passwordIput}
         />
-        <button
-          type="submit"
-          className="border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto "
-        >
-          Logga in
-        </button>
+        <BlueButton buttonClick={handelSubmitt} buttonText={"Logga in"} />
         {errorMessage && (
           <p className="text-lg text-red-800 font-medium absolute bottom-0 m-auto">
             {errorMessage}

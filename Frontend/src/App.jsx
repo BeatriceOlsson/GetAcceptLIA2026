@@ -1,9 +1,8 @@
 import "./App.css";
-//import CreateDocument from "./components/createDocument";
-//import AddContact from "./components/addContact";
 import Page from "./page/page";
-import Login from "./components/login";
-import { LogdInProvider, useLogdIn } from "./context/logdInContext";
+import Login from "./components/logIn/login";
+import { LogdInProvider } from "./context/logdInContext";
+import { useLogdIn } from "./hooks/logInHook";
 
 function AppContent() {
   const { isLogdIn } = useLogdIn();
