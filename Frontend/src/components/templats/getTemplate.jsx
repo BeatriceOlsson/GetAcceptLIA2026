@@ -4,6 +4,7 @@ import { useLogdIn } from "../../hooks/logInHook";
 import { useDockument } from "../../hooks/saveDataHook";
 import { LoadingHandling } from "../smalComponents/loadingHandling";
 import { ErrorMessage } from "../smalComponents/errorMessage";
+import FetchBackend from "../fetchBackend";
 
 function GetTemplate() {
   const { getToken } = useLogdIn();
@@ -24,30 +25,26 @@ function GetTemplate() {
       setErrorMessage("");
 
       try {
-        const response = await fetch("http://localhost:3000/template", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        const response = await FetchBackend({
+          url: "/template",
+          crud: "GET",
+          token: token,
         });
 
-        if (!response.ok) {
-          throw new Error("Templats kunde inte hämtas.");
+        if (response instanceof Error) {
+          setErrorMessage(response.message);
+        } else {
+          setTemplates(response.templates || []);
         }
-
-        const data = await response.json();
-        setTemplates(data.templates || []);
-      } catch (err) {
-        console.error("Fel uppstod: ", err);
-        setErrorMessage(err.message || "Templats kunde inte hämtas.");
+      } catch (error) {
+        errorMessage(error.message);
       } finally {
         setLoading(false);
       }
     };
 
     getTemplates();
-  }, [getToken]);
+  }, [getToken, errorMessage]);
 
   return (
     <div className="">

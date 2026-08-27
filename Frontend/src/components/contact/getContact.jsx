@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BlueButton } from "../smalComponents/blueButton";
 import { useDockument } from "../../hooks/saveDataHook";
+import FetchBackend from "../fetchBackend";
 
 function GetContact({ addContacktPage }) {
   const [search, setSearch] = useState("");
@@ -26,16 +27,15 @@ function GetContact({ addContacktPage }) {
 
     const timeoutId = setTimeout(async () => {
       try {
-        const res = await fetch(
-          `http://localhost:3000/userData?s=${encodeURIComponent(value)}`,
-        );
+        const res = await FetchBackend({
+          url: `/userData?s=${encodeURIComponent(value)}`,
+        });
 
-        if (!res.ok) {
+        if (res instanceof Error) {
           throw new Error("Kunde inte hämta kontakt");
         }
 
-        const data = await res.json();
-        const contacts = Array.isArray(data?.data) ? data.data : [];
+        const contacts = Array.isArray(res?.data) ? res.data : [];
         setResults(contacts);
       } catch (error) {
         console.error("Användare kunde inte hittas", error);

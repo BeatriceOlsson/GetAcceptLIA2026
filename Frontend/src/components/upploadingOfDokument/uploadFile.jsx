@@ -9,6 +9,7 @@ import "@uppy/url/css/style.min.css";
 import { useDockument } from "../../hooks/saveDataHook";
 import { PopUppWindow } from "../smalComponents/popUppWindow";
 import { BlueButton } from "../smalComponents/blueButton";
+import FetchBackend from "../fetchBackend";
 
 function UploadFile() {
   const { getToken } = useLogdIn();
@@ -71,22 +72,18 @@ function UploadFile() {
 
         console.log(files);
 
-        const response = await fetch("http://localhost:3000/file", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
+        const response = await FetchBackend({
+          url: "/file",
+          crud: "POST",
+          token: token,
+          body: payload,
         });
 
         if (!response.ok) {
           console.log(response);
         }
-
-        const data = await response.json();
-        console.log(data);
-        upploudedFile(data.details.file_id);
+        console.log(response);
+        upploudedFile(response.details.file_id);
 
         instans.setFileState(successful[0].id, {
           progress: { uploadComplete: true, percentage: 100 },
