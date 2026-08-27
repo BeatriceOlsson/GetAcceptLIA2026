@@ -6,24 +6,12 @@ import AddContact from "../components/contact/addContact";
 import UploadFile from "../components/upploadingOfDokument/uploadFile";
 import { useLogdIn } from "../hooks/logInHook";
 import { BlueButton } from "../components/smalComponents/blueButton";
+import { SelectedContact } from "../components/contact/selectedContacts";
 
 function Page() {
   const [addContactState, setAddContactState] = useState(false);
   const [imageLink, setImageLink] = useState(false);
   const { logOut } = useLogdIn();
-
-  /* const handelRecipients = (newInList) => {
-    setRecipientsList((prev) => {
-      const nextList = [...prev, newInList];
-      return nextList;
-    });
-  };
-
-  const removeContact = (contactToRemove) => {
-    setRecipientsList((prev) =>
-      prev.filter((person) => person.userEmail !== contactToRemove),
-    );
-  };*/
 
   const showAddContact = () => {
     return setAddContactState(!addContactState);
@@ -32,11 +20,6 @@ function Page() {
   const showAlternativToTemplate = () => {
     return setImageLink(!imageLink);
   };
-
-  /* const sendUploadedFile = async (uploadedData) => {
-    const fileId = uploadedData?.url || uploadedData || null;
-    return setUploadedFile(fileId);
-  };*/
 
   return (
     <div className="bg-blue-100 p-4">
@@ -56,6 +39,7 @@ function Page() {
           <AddContact hideContacktPage={showAddContact} />
         </div>
         <CreateDocument />
+        <SelectedContact />
       </div>
       <div className="ml-11">
         <BlueButton

@@ -2,9 +2,12 @@ import { useState /*useEffect*/ } from "react";
 import { useLogdIn } from "../hooks/logInHook";
 import { BlueButton } from "./smalComponents/blueButton";
 import { InputField } from "./smalComponents/inputFiled";
+import { useDockument } from "../hooks/saveDataHook";
+import { ErrorMessage } from "./smalComponents/errorMessage";
 
 function CreateDocument() {
   const { isLogdIn } = useLogdIn();
+  const { saveNameValue } = useDockument();
   const [errorMessage, setErrorMasage] = useState("");
   const [sendData, setSendData] = useState({
     name: "",
@@ -23,7 +26,8 @@ function CreateDocument() {
       console.log("Behöver vara inlogad för att kunna spara kontakter.");
       return;
     }
-    //Bhåll här ifrån och neråt, skall ändras för att göra anroppet på återanvändbar komponet.
+    saveNameValue(sendData);
+
     console.log(sendData);
     try {
       const createDocumentNode = await fetch(
@@ -50,12 +54,13 @@ function CreateDocument() {
     <div className="w-full max-w-2xl flex flex-row gap-4 m-2">
       <form
         onSubmit={handelSendingDocument}
-        className=" flex flex-col relative b-1 w-100 pb-16"
+        className=" flex flex-col items-end justify-center relative b-1 w-100 pb-16 gap-3"
       >
         <InputField
           labelHTML={"name"}
           labelType={"text"}
-          labelName={"documentName"}
+          labelName={"Dokument namn"}
+          name={"name"}
           value={sendData.name}
           onChange={handelInputDocument}
         />
@@ -63,15 +68,12 @@ function CreateDocument() {
           labelHTML={"value"}
           labelType={"number"}
           labelName={"value"}
+          name={"value"}
           value={sendData.value}
           onChange={handelInputDocument}
         />
         <BlueButton type={"submit"} buttonText={"Skicka"} />
-        {errorMessage && (
-          <p className="text-lg text-red-800 font-medium absolute bottom-0 m-auto">
-            {errorMessage}
-          </p>
-        )}
+        {errorMessage && <ErrorMessage error={errorMessage} />}
       </form>
     </div>
   );

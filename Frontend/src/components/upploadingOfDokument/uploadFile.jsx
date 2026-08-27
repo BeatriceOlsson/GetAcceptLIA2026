@@ -1,21 +1,36 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import Uppy from "@uppy/core";
 import { useLogdIn } from "../../hooks/logInHook";
 import Dashboard from "@uppy/react/dashboard";
-import XHRUpload from "@uppy/xhr-upload";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/url/css/style.min.css";
+import { useDockument } from "../../hooks/saveDataHook";
+import { PopUppWindow } from "../smalComponents/popUppWindow";
+import { BlueButton } from "../smalComponents/blueButton";
 
-function UploadFile({ uploadedFileChile }) {
+function UploadFile() {
   const { getToken } = useLogdIn();
-  const [errorMessage, setErrorMessage] = useState("");
+  const { upploudedFile } = useDockument();
+  const [popUpp, setPopUpp] = useState(false);
 
-  const [uppy] = useState(() => {
-    const token = getToken();
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-    return new Uppy({
+      reader.onload = () => {
+        const result = reader.result;
+        resolve(result.split(",")[1]);
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  const uppy = useMemo(() => {
+    const instans = new Uppy({
       restrictions: {
         maxFileSize: 5 * 1024 * 1024,
         allowedFileTypes: [
@@ -37,61 +52,76 @@ function UploadFile({ uploadedFileChile }) {
         maxNumberOfFiles: 1,
       },
       autoProceed: false,
-    }).use(XHRUpload, {
-      endpoint: "http://localhost:3000/file",
-      method: "POST",
-      fieldName: "file",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      getResponseData(responseText) {
-        try {
-          const json =
-            typeof responseText === "string"
-              ? JSON.parse(responseText)
-              : responseText;
-          return {
-            url: json.details?.file_id || "",
-          };
-        } catch (error) {
-          console.error("Kunde inte tolka svar som JSON:", error);
-          return {};
-        }
-      },
     });
-  });
+    const token = getToken();
 
-  useEffect(() => {
-    const handelComplet = (result) => {
-      console.log("Uppy complete svar:", result);
+    instans.on("complete", async ({ successful }) => {
+      try {
+        const files = await Promise.all(
+          successful.map(async (file) => {
+            const base64 = await fileToBase64(file.data);
+            return {
+              file_name: file.name,
+              file_content: base64,
+            };
+          }),
+        );
 
-      if (result.successful.length > 0) {
-        const fileRespons = result.successful[0].response.body;
-        setErrorMessage("");
+        const payload = files[0];
 
-        if (uploadedFileChile) {
-          uploadedFileChile(fileRespons);
+        console.log(files);
+
+        const response = await fetch("http://localhost:3000/file", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          console.log(response);
         }
+
+        const data = await response.json();
+        console.log(data);
+        upploudedFile(data.details.file_id);
+
+        instans.setFileState(successful[0].id, {
+          progress: { uploadComplete: true, percentage: 100 },
+        });
+
+        setTimeout(() => {
+          instans.removeFile(successful[0].id);
+          setPopUpp(true);
+        }, 1000);
+      } catch (error) {
+        console.log("Något gick fel: ", error);
       }
-    };
+    });
 
-    uppy.on("complete", handelComplet);
-
-    return () => {
-      uppy.off("complete", handelComplet);
-    };
-  }, [uppy, uploadedFileChile]);
+    return instans;
+  }, [getToken, upploudedFile]);
 
   return (
     <div className="m-4">
+      <PopUppWindow
+        isOpen={popUpp}
+        title={"Filen ladades upp."}
+        content={
+          <BlueButton
+            buttonText={"Stäng fönstret"}
+            buttonClick={() => setPopUpp(false)}
+          />
+        }
+      />
       <Dashboard
         uppy={uppy}
         height={250}
         width={250}
         hideUploadButton={false}
       />
-
-      {errorMessage && <p>{errorMessage}</p>}
     </div>
   );
 }

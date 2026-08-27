@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLogdIn } from "../../hooks/logInHook";
 import { BlueButton } from "../smalComponents/blueButton";
 import { InputField } from "../smalComponents/inputFiled";
+import { ErrorMessage } from "../smalComponents/errorMessage";
 
 function AddContact({ hideContacktPage }) {
   const { isLogdIn } = useLogdIn();
@@ -41,7 +42,6 @@ function AddContact({ hideContacktPage }) {
       console.log("återställer värderna");
       setErrorMasage("");
       setFromForm({ email: "", mobile: "", firstName: "", lastName: "" });
-      alert("Person sparadess i db"); //Läg till att man tars till en sida
     } catch (error) {
       console.error("Person kunde inte sparas: " + error);
       setErrorMasage("Person kunde inte sparas.");
@@ -51,13 +51,14 @@ function AddContact({ hideContacktPage }) {
     <div className="border-4 border-blue-900 rounded-sm shadow-lg">
       <div className="flex items-center justify-center gap-9 ml-3 mr-5">
         <form
-          className=" flex flex-col relative pb-14 w-100"
+          className="flex flex-col items-end justify-center relative pb-14 w-100 gap-2"
           onSubmit={handelSendingUserData}
         >
           <InputField
             labelHTML={"email"}
             labelName={"Email"}
             labelType={"email"}
+            name={"email"}
             value={fromForm.email}
             onChange={handleInputChange}
           />
@@ -65,6 +66,7 @@ function AddContact({ hideContacktPage }) {
             labelHTML={"firstName"}
             labelName={"Förnamn"}
             labelType={"text"}
+            name={"firstName"}
             Value={fromForm.firstName}
             onChange={handleInputChange}
           />
@@ -72,20 +74,15 @@ function AddContact({ hideContacktPage }) {
             labelHTML={"lastName"}
             labelName={"Efternamn"}
             labelType={"text"}
+            name={"lastName"}
             value={fromForm.lastName}
             onChange={handleInputChange}
           />
-          <div className="flex gap-2">
-            <BlueButton buttonText={"Läg till kontack"} />
+          <div className="flex items-center justify-center gap-2">
+            <BlueButton type="submit" buttonText={"Läg till kontack"} />
             <BlueButton buttonClick={hideContacktPage} buttonText={"Avbryt"} />
           </div>
-          {
-            /*Skappa som en separat component som man hämtar om error visas?*/ errorMesage && (
-              <p className="text-lg text-red-800 font-medium absolute bottom-0 m-auto">
-                {errorMesage}
-              </p>
-            )
-          }
+          {errorMesage && <ErrorMessage error={errorMesage} />}
         </form>
       </div>
     </div>
