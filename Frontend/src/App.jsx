@@ -1,8 +1,9 @@
 import "./App.css";
 import Page from "./page/page";
 import Login from "./components/logIn/login";
-import { LogdInProvider } from "./context/logdInContext";
+import { LogdInProvider } from "./context/logdInProvider";
 import { useLogdIn } from "./hooks/logInHook";
+import { SaveDataProvider } from "./context/saveDataProvider";
 
 function AppContent() {
   const { isLogdIn } = useLogdIn();
@@ -13,7 +14,9 @@ function AppContent() {
 function App() {
   return (
     <LogdInProvider>
-      <AppContent />
+      <SaveDataProvider>
+        <AppContent />
+      </SaveDataProvider>
     </LogdInProvider>
   );
 }

@@ -5,6 +5,7 @@ export function InputField({
   labelRef,
   value,
   onChange,
+  name,
 }) {
   return (
     <div>
@@ -14,8 +15,9 @@ export function InputField({
       <input
         type={labelType}
         ref={labelRef}
-        value={value || ""}
+        value={value}
         onChange={onChange}
+        name={name}
         className="rounded-sm w-80 h-9 gap-2 p-2"
       />
     </div>

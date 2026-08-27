@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { TemplateBox } from "./template";
 import { useLogdIn } from "../../hooks/logInHook";
+import { useDockument } from "../../hooks/saveDataHook";
+import { LoadingHandling } from "../smalComponents/loadingHandling";
+import { ErrorMessage } from "../smalComponents/errorMessage";
 
-function GetTemplate({ sendTemplate, selectedT }) {
+function GetTemplate() {
   const { getToken } = useLogdIn();
+  const { dockumentData, saveTemplate } = useDockument();
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -51,21 +55,27 @@ function GetTemplate({ sendTemplate, selectedT }) {
         Template
       </h2>
       <ul className="flex items-center justify-center flex-row flex-wrap gap-5 m-4 cursor-pointer">
-        {Array.isArray(templates) && templates.length > 0 ? (
-          templates.map((template) => (
-            <TemplateBox
-              key={template.id ?? template._id ?? template.name}
-              template={template}
-              selected={selectedT === template.id || selectedT === template._id}
-              onSelected={() => sendTemplate?.(template.id ?? template._id)}
-            />
-          ))
-        ) : (
-          <li>Inga templates hittades.</li>
-        )}
+        {Array.isArray(templates) &&
+          templates.length > 0 &&
+          templates.map((template) => {
+            const templateId = template.id ?? template._id;
+            const isSelected = dockumentData?.template === templateId;
+
+            return (
+              <TemplateBox
+                key={templateId ?? template.name}
+                template={template}
+                selected={isSelected}
+                onSelected={() => {
+                  const status = saveTemplate?.(templateId);
+                  console.log("Template status:", status);
+                }}
+              />
+            );
+          })}
       </ul>
-      {errorMessage && <p>{errorMessage}</p>}
-      {loading && <p>...Loading</p>}
+      {errorMessage && <ErrorMessage error={errorMessage} />}
+      {loading && <LoadingHandling />}
     </div>
   );
 }

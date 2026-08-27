@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { useLogdIn } from "../../hooks/logInHook";
 import { BlueButton } from "../smalComponents/blueButton";
 import { InputField } from "../smalComponents/inputFiled";
+import { useLogdIn } from "../../hooks/logInHook";
+import { ErrorMessage } from "../smalComponents/errorMessage";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -42,28 +43,33 @@ function Login() {
       <div>
         <h1 className="text-5xl font-bold m-5">Välkommen</h1>
         <h3 className="flex items-center m-5 text-xl justify-center">
-          {" "}
           Vänlligen logga in!
         </h3>
       </div>
-      <form className=" flex flex-col relative pb-14 w-100">
+      <form
+        onSubmit={handelSubmitt}
+        className="flex flex-col items-end justify-center relative gap-3"
+      >
         <InputField
           labelHTML={"email"}
           labelName={"Email:"}
           labelType={"email"}
+          name={"email"}
           labelRef={emailInput}
         />
         <InputField
           labelHTML={"password"}
           labelName={"Lösenord"}
           labelType={"password"}
+          name={"password"}
           labelRef={passwordIput}
         />
-        <BlueButton buttonClick={handelSubmitt} buttonText={"Logga in"} />
+        <BlueButton type="submit" buttonText={"Logga in"} />
         {errorMessage && (
-          <p className="text-lg text-red-800 font-medium absolute bottom-0 m-auto">
-            {errorMessage}
-          </p>
+          <ErrorMessage
+            error={errorMessage}
+            className="absolute left-0 right-0 top-full mt-1 text-center"
+          />
         )}
       </form>
     </div>

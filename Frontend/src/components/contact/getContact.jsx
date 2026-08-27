@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { BlueButton } from "../smalComponents/blueButton";
+import { useDockument } from "../../hooks/saveDataHook";
 
-function GetContact({ contactToRecipients, addContacktPage }) {
+function GetContact({ addContacktPage }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [selectedContact, setselectedContact] = useState(null);
+  const { saveRecipient } = useDockument();
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
@@ -46,12 +48,15 @@ function GetContact({ contactToRecipients, addContacktPage }) {
 
   const sendContackt = async (e) => {
     e.preventDefault();
+
     if (!selectedContact) {
-      console.log("Data saknas");
+      console.log("Data saknas ", selectedContact);
       return;
     }
+
     const contact = { ...selectedContact };
-    contactToRecipients(contact);
+    console.log(contact);
+    saveRecipient(contact);
     setResults([]);
     setSearch("");
     setselectedContact(null);
@@ -75,7 +80,7 @@ function GetContact({ contactToRecipients, addContacktPage }) {
         />
         <div className="absolute top-5 right-0">
           <div className="flex flex-col">
-            <BlueButton type="submit" buttonText={"Läg till mottagare"} />
+            <BlueButton type="submit" buttonText={"Läg till"} />
             <BlueButton
               type="button"
               buttonClick={addContacktPage}

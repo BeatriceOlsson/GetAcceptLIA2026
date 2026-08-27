@@ -1,7 +1,7 @@
-import { createContext, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { LogdInContext } from "./logedInContext";
 
 const STORAGE_KEY = "getaccept_token";
-export const LogdInContext = createContext(null);
 
 export function LogdInProvider({ children }) {
   const [isLogdIn, setIsLogdIn] = useState(() => {

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { LogdInContext } from "../context/logdInContext";
+import { LogdInContext } from "../context/logedInContext";
 
 export function useLogdIn() {
   const context = useContext(LogdInContext);
