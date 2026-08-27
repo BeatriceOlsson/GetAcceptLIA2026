@@ -3,6 +3,7 @@ import { useLogdIn } from "../../hooks/logInHook";
 import { BlueButton } from "../smalComponents/blueButton";
 import { InputField } from "../smalComponents/inputFiled";
 import { ErrorMessage } from "../smalComponents/errorMessage";
+import FetchBackend from "../fetchBackend";
 
 function AddContact({ hideContacktPage }) {
   const { isLogdIn } = useLogdIn();
@@ -28,15 +29,14 @@ function AddContact({ hideContacktPage }) {
     }
 
     try {
-      const responseNode = await fetch("http://localhost:3000/userData", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(fromForm),
+      const responseNode = await FetchBackend({
+        url: "/userData",
+        crud: "POST",
+        body: fromForm,
       });
-      const data = await responseNode.json();
 
-      if (!responseNode.ok) {
-        setErrorMasage(data.message || "Okänt fel uppstog");
+      if (responseNode instanceof Error) {
+        setErrorMasage(responseNode.message || "Okänt fel uppstog");
         return;
       }
       console.log("återställer värderna");
@@ -48,8 +48,8 @@ function AddContact({ hideContacktPage }) {
     }
   };
   return (
-    <div className="border-4 border-blue-900 rounded-sm shadow-lg">
-      <div className="flex items-center justify-center gap-9 ml-3 mr-5">
+    <div className="border-4 border-blue-900 rounded-sm shadow-lg bg-blue-100">
+      <div className="flex items-center justify-center gap-9 m-3 bg-blue-100">
         <form
           className="flex flex-col items-end justify-center relative pb-14 w-100 gap-2"
           onSubmit={handelSendingUserData}
@@ -63,11 +63,19 @@ function AddContact({ hideContacktPage }) {
             onChange={handleInputChange}
           />
           <InputField
+            labelHTML={"mobile"}
+            labelName={"Mobil"}
+            labelType={"tel"}
+            name={"mobile"}
+            value={fromForm.mobile}
+            onChange={handleInputChange}
+          />
+          <InputField
             labelHTML={"firstName"}
             labelName={"Förnamn"}
             labelType={"text"}
             name={"firstName"}
-            Value={fromForm.firstName}
+            value={fromForm.firstName}
             onChange={handleInputChange}
           />
           <InputField

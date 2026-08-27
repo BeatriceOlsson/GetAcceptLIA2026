@@ -30,7 +30,7 @@ function Page() {
           addContacktPage={showAddContact}
         />
         <div
-          className={`absolute transition-all duration-300 ease-in-out top-40 left-5 ${
+          className={`absolute transition-all duration-300 ease-in-out top-40 left-5 z-50 ${
             addContactState
               ? "opacity-100 translate-x-0 pointer-events-auto bg-blue-100"
               : "opacity-0 -translate-y-4 pointer-events-none"

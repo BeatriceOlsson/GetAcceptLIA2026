@@ -4,6 +4,7 @@ import { BlueButton } from "./smalComponents/blueButton";
 import { InputField } from "./smalComponents/inputFiled";
 import { useDockument } from "../hooks/saveDataHook";
 import { ErrorMessage } from "./smalComponents/errorMessage";
+import FetchBackend from "./fetchBackend";
 
 function CreateDocument() {
   const { isLogdIn } = useLogdIn();
@@ -30,18 +31,22 @@ function CreateDocument() {
 
     console.log(sendData);
     try {
-      const createDocumentNode = await fetch(
+      const createDocumentNode = await FetchBackend(
+        {
+          url: "/createDocument",
+          crud: "POST",
+          body: sendData,
+        } /*
         "http://localhost:3000/createDocument",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(sendData),
-        },
+        },*/,
       );
-      const data = await createDocumentNode.json();
 
       if (!createDocumentNode.ok) {
-        setErrorMasage(data.message || "Okänt fel uppstog");
+        setErrorMasage(createDocumentNode.message || "Okänt fel uppstog");
         return;
       }
     } catch (error) {

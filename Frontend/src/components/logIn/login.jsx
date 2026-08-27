@@ -3,6 +3,7 @@ import { BlueButton } from "../smalComponents/blueButton";
 import { InputField } from "../smalComponents/inputFiled";
 import { useLogdIn } from "../../hooks/logInHook";
 import { ErrorMessage } from "../smalComponents/errorMessage";
+import FetchBackend from "../fetchBackend";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -18,19 +19,18 @@ function Login() {
     const password = passwordIput.current.value;
 
     try {
-      const responseNode = await fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: { "Content-type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const responseNode = await FetchBackend({
+        url: "/login",
+        crud: "POST",
+        body: { email, password },
       });
-      const data = await responseNode.json();
 
-      if (!responseNode.ok) {
-        setErrorMessage(data.message || "Okänt fel uppstog");
+      if (responseNode instanceof Error) {
+        setErrorMessage(responseNode.message || "Okänt fel uppstog");
         return;
       }
 
-      logdIn(data.token);
+      logdIn(responseNode.token);
       setErrorMessage("");
     } catch (error) {
       setErrorMessage("Något gick fel vid inloggningen.");
