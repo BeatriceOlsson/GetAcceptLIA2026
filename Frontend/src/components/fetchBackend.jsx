@@ -1,16 +1,21 @@
-async function FetchBackend({ url, crud, body, token }) {
-  console.log(url, crud, body, token);
+async function FetchBackend({ url, crud, body }) {
+  console.log(url, crud, body);
   const backendURL = import.meta.env.VITE_API_BACKEND_URL;
 
   try {
-    const response = await fetch(`${backendURL}${url}`, {
+    const dataToSend = {
       method: crud,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(body),
-    });
+      credentials: "include",
+    };
+
+    if (crud !== "GET" && body) {
+      dataToSend.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(`${backendURL}${url}`, dataToSend);
 
     const data = await response.json();
     console.log(data);

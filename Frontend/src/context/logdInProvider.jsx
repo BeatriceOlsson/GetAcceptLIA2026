@@ -1,30 +1,29 @@
 import { useMemo, useState } from "react";
 import { LogdInContext } from "./logedInContext";
 
-const STORAGE_KEY = "getaccept_token";
-
 export function LogdInProvider({ children }) {
   const [isLogdIn, setIsLogdIn] = useState(() => {
-    const token = localStorage.getItem(STORAGE_KEY);
-    return !!token;
+    const cookieExpiresAt = localStorage.getItem("session_expires_at");
+    if (!cookieExpiresAt) return false;
+    return Date.now() < Number(cookieExpiresAt);
   });
   const [loading, setLoading] = useState(false);
 
-  const logdIn = (token) => {
-    if (!token) return;
-    localStorage.setItem(STORAGE_KEY, token);
+  const logdIn = (cookieExpiresAt) => {
+    if (!cookieExpiresAt) return;
+    localStorage.setItem("session_expires_at", cookieExpiresAt);
     setIsLogdIn(true);
     setLoading(false);
   };
 
   const logOut = () => {
-    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem("session_expires_at");
     setIsLogdIn(false);
     setLoading(false);
   };
 
   const getToken = () => {
-    return localStorage.getItem(STORAGE_KEY);
+    return localStorage.getItem("session_expires_at");
   };
 
   const value = useMemo(

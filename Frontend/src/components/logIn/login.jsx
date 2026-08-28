@@ -30,7 +30,7 @@ function Login() {
         return;
       }
 
-      logdIn(responseNode.token);
+      logdIn(responseNode.expireCookie);
       setErrorMessage("");
     } catch (error) {
       setErrorMessage("Något gick fel vid inloggningen.");
