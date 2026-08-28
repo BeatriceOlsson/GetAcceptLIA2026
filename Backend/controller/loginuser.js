@@ -28,11 +28,22 @@ async function loginUser ( req, res) {
             return res.status(400).json({message: 'Inlogning lyckades men token saknas.'});
         }
 
-        res.json({message: `Inlogning lyckades`, token: data.access_token, expiers: data.expiers_in});
+        const maxAgeMs = 7200000;
+
+        res.cookie('auth_token', data.access_token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: maxAgeMs 
+        });
+
+        const expireCookie = Date.now() + maxAgeMs ;
+
+        return res.status(200).json({ secure: true, message: `Inlogning lyckades`, expireCookie });
     } catch (error) {
         logger.error('Fel vid hämtning av token från GetAccept', {
             message: error.message,
-            stack: error.stack
+            stack: error.stack,
         });
         return res.status(500).json({ message: 'Server problem vid inlogning' });
     }

@@ -4,8 +4,7 @@ import logger from '../config/logger.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const auToken = req.headers['authorization'];
-    const token = auToken && auToken.split(' ')[1];
+    const token = req.cookies.auth_token;
 
     if(!token) {
         return res.status(400).json({message: 'Behöver vara inlogad för att kuna gå vidare.'})

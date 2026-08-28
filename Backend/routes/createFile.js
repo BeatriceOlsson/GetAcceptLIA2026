@@ -6,8 +6,7 @@ const router = express.Router();
 
 router.post('/', async (req, res) => {
     const { file_name, file_content } = req.body;
-    const auToken = req.headers['authorization'];
-    const token = auToken ? auToken.replace(/bearer/i, '').trim() : null;
+    const token = req.cookies.auth_token;
 
     if (!file_name || !file_content) {
         return res.status(400).json({ message: 'Fil saknas.' });

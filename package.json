@@ -27,6 +27,7 @@
     "@uppy/react": "^5.2.0",
     "@uppy/url": "^5.1.0",
     "@uppy/xhr-upload": "^5.2.0",
+    "cookie-parser": "^1.4.7",
     "multer": "^2.2.0"
   }
 }

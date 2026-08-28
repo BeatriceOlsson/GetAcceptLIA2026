@@ -1,25 +1,17 @@
 import { useEffect, useState } from "react";
 import { TemplateBox } from "./template";
-import { useLogdIn } from "../../hooks/logInHook";
 import { useDockument } from "../../hooks/saveDataHook";
 import { LoadingHandling } from "../smalComponents/loadingHandling";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
 
 function GetTemplate() {
-  const { getToken } = useLogdIn();
   const { dockumentData, saveTemplate } = useDockument();
   const [templates, setTemplates] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    const token = getToken();
-
-    if (!token) {
-      return;
-    }
-
     const getTemplates = async () => {
       setLoading(true);
       setErrorMessage("");
@@ -28,7 +20,6 @@ function GetTemplate() {
         const response = await FetchBackend({
           url: "/template",
           crud: "GET",
-          token: token,
         });
 
         if (response instanceof Error) {
@@ -44,7 +35,7 @@ function GetTemplate() {
     };
 
     getTemplates();
-  }, [getToken, errorMessage]);
+  }, [errorMessage]);
 
   return (
     <div className="">

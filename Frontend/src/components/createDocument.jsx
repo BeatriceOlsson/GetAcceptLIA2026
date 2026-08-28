@@ -31,19 +31,11 @@ function CreateDocument() {
 
     console.log(sendData);
     try {
-      const createDocumentNode = await FetchBackend(
-        {
-          url: "/createDocument",
-          crud: "POST",
-          body: sendData,
-        } /*
-        "http://localhost:3000/createDocument",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(sendData),
-        },*/,
-      );
+      const createDocumentNode = await FetchBackend({
+        url: "/createDocument",
+        crud: "POST",
+        body: sendData,
+      });
 
       if (!createDocumentNode.ok) {
         setErrorMasage(createDocumentNode.message || "Okänt fel uppstog");
