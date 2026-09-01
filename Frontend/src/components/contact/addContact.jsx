@@ -48,8 +48,8 @@ function AddContact({ hideContacktPage }) {
     }
   };
   return (
-    <div className="border-4 border-blue-900 rounded-sm shadow-lg bg-blue-100">
-      <div className="flex items-center justify-center gap-9 m-3 bg-blue-100">
+    <div className="border-2 border-gray-700 rounded-sm shadow-2xl bg-gray-50">
+      <div className="flex items-center justify-center gap-9 m-3 bg-gray-50">
         <form
           className="flex flex-col items-end justify-center relative pb-14 w-100 gap-2"
           onSubmit={handelSendingUserData}

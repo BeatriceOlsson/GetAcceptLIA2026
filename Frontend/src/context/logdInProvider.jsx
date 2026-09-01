@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { LogdInContext } from "./logedInContext";
 
 export function LogdInProvider({ children }) {
@@ -9,9 +9,28 @@ export function LogdInProvider({ children }) {
   });
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (!isLogdIn) return;
+
+    const checkExpiration = () => {
+      const cookieExpiresAt = Number(
+        localStorage.getItem("session_expires_at"),
+      );
+      if (!cookieExpiresAt || Date.now() >= cookieExpiresAt) {
+        localStorage.removeItem("session_expires_at");
+        setIsLogdIn(false);
+      }
+    };
+
+    checkExpiration();
+    const intervalId = window.setInterval(checkExpiration, 1000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isLogdIn]);
+
   const logdIn = (cookieExpiresAt) => {
     if (!cookieExpiresAt) return;
-    localStorage.setItem("session_expires_at", cookieExpiresAt);
+    localStorage.setItem("session_expires_at", String(cookieExpiresAt));
     setIsLogdIn(true);
     setLoading(false);
   };

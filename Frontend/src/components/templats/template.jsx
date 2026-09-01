@@ -4,8 +4,8 @@ export function TemplateBox({ template, selected, onSelected }) {
 
   return (
     <li
-      className={`border-4 border-blue-900 w-60 h-96 flex flex-col justify-between overflow-hidden shadow-lg cursor-pointer transition-all ${
-        selected ? "border-green-500 bg-green-50/30 scale-102" : "bg-white"
+      className={`border-2 bg-white rounded-lg hover:bg-gray-500 hover:text-orange-400 w-60 h-96 flex flex-col justify-between overflow-hidden shadow-lg cursor-pointer transition-all ${
+        selected ? "border-orange-600 scale-105" : "bg-white  border-gray-700"
       }`}
       onClick={onSelected}
     >

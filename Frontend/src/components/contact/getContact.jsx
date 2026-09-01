@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BlueButton } from "../smalComponents/blueButton";
 import { useDockument } from "../../hooks/saveDataHook";
 import FetchBackend from "../fetchBackend";
+import { InputField } from "../smalComponents/inputFiled";
 
 function GetContact({ addContacktPage }) {
   const [search, setSearch] = useState("");
@@ -63,33 +64,20 @@ function GetContact({ addContacktPage }) {
   };
 
   return (
-    <div className="w-full max-w-s flex flex-col gap-4 m-2">
-      <form
-        onSubmit={sendContackt}
-        className=" flex flex-col relative pb-14 max-w-[500px] "
-      >
-        <label htmlFor="contact-search" className="text-xl m-1">
-          Sök kontakt:
-        </label>
-        <input
-          id="contact-search"
-          type="text"
-          value={search}
-          onChange={handleSearchChange}
-          className="rounded-sm w-80 h-9 p-2 static"
-        />
-        <div className="absolute top-5 right-0">
-          <div className="flex flex-col">
-            <BlueButton type="submit" buttonText={"Läg till"} />
-            <BlueButton
-              type="button"
-              buttonClick={addContacktPage}
-              buttonText={"Läg till kontakt"}
-            />
-          </div>
+    <div className=" flex flex-row gap-4 m-2">
+      <form onSubmit={sendContackt} className="flex flex-row">
+        <div className=" flex flex-col relative pb-14 max-w-[500px] ">
+          <InputField
+            labelHTML={"email"}
+            labelName={"Sök kontakt:"}
+            labelType={"text"}
+            value={search}
+            onChange={handleSearchChange}
+            className={"static"}
+          />
         </div>
         {results.length > 0 ? (
-          <ul className="absolute top-20 left-1 bg-blue-100 ease-in-out z-50">
+          <ul className="absolute top-20 left-1 bg-white ease-in-out z-50">
             {results.map((person, index) => (
               <li
                 key={`${person.userEmail || "contact"}-${index}`}
@@ -109,6 +97,16 @@ function GetContact({ addContacktPage }) {
         ) : (
           <p></p>
         )}
+        <div className="top-5 right-0">
+          <div className="flex flex-col">
+            <BlueButton type="submit" buttonText={"Läg till"} />
+            <BlueButton
+              type="button"
+              buttonClick={addContacktPage}
+              buttonText={"Läg till kontakt"}
+            />
+          </div>
+        </div>
       </form>
     </div>
   );

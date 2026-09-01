@@ -8,7 +8,7 @@ export function BlueButton({
     <button
       onClick={buttonClick}
       type={type}
-      className={`border-4 border-blue-900 rounded-sm w-32 h-10 mt-4 m-auto ${className}`}
+      className={`border-2 border-gray-700 hover:bg-gray-500 hover:text-orange-400 rounded-lg active:border-orange-600 w-32 h-10 mt-4 m-auto ${className}`}
     >
       {buttonText}
     </button>

@@ -37,7 +37,7 @@ async function loginUser ( req, res) {
             maxAge: maxAgeMs 
         });
 
-        const expireCookie = Date.now() + maxAgeMs ;
+        const expireCookie = Date.now() + maxAgeMs;
 
         return res.status(200).json({ secure: true, message: `Inlogning lyckades`, expireCookie });
     } catch (error) {

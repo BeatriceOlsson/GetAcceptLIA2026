@@ -6,9 +6,11 @@ export function InputField({
   value,
   onChange,
   name,
+  className,
+  onBlur,
 }) {
   return (
-    <div>
+    <div className={`flex flex-col ${className}`}>
       <label htmlFor={labelHTML} className="text-xl m-1">
         {labelName}
       </label>
@@ -18,7 +20,8 @@ export function InputField({
         value={value}
         onChange={onChange}
         name={name}
-        className="rounded-sm w-80 h-9 gap-2 p-2"
+        onBlur={onBlur}
+        className="rounded-lg border-2 border-gray-700 w-80 h-9 gap-2 p-2 focus:bg-orange-50"
       />
     </div>
   );

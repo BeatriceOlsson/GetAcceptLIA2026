@@ -39,9 +39,14 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-blue-100 gap-9">
+    <div className="flex items-center justify-center min-h-screen gap-9 bg-gradient-to-r from-white from-50% to-gray-200 to-50%">
       <div>
-        <h1 className="text-5xl font-bold m-5">Välkommen</h1>
+        <img
+          src="../public/GetAccept.png"
+          alt="GetAccept Loga"
+          className="h-16"
+        />
+        <h1 className="flex items-end text-5xl font-bold m-5">Välkommen</h1>
         <h3 className="flex items-center m-5 text-xl justify-center">
           Vänlligen logga in!
         </h3>

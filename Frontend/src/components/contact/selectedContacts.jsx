@@ -15,7 +15,7 @@ export function SelectedContact() {
         recipient.map((person, index) => (
           <ul
             key={`${person.userEmail ?? person.email ?? "recipient"}-${index}`}
-            className="border-4 border-blue-900 rounded-sm flex flex-row w-64 h-25 p-1 relative"
+            className="border-2 border-gray-700 rounded-lg flex flex-row w-64 h-25 p-1 relative"
           >
             <li>
               <BlueButton
@@ -23,7 +23,7 @@ export function SelectedContact() {
                 buttonClick={() =>
                   removeRecipient(person.userEmail ?? person.email ?? person)
                 }
-                className="text-1xl right-0 m-1 absolute w-6 h-auto"
+                className="text-1xl right-1 m-1 absolute w-5 h-auto"
               />
               <h3 className="text-l m-0.5">
                 {person.firstName} {person.lastName}
@@ -32,7 +32,7 @@ export function SelectedContact() {
               <select
                 name="role"
                 id={`role-${index}`}
-                className="border-4 border-blue-900 rounded-sm"
+                className="border-2 border-gray-700 rounded-lg hover:bg-gray-500 hover:text-white"
                 value={person.role || "Signer"}
                 onChange={(e) =>
                   uppdateRecipientRole(
