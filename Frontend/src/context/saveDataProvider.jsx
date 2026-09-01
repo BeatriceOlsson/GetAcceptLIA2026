@@ -44,8 +44,8 @@ export function SaveDataProvider({ children }) {
       setDokumentData((prev) => ({
         ...prev,
         recipients: [
-          ...prev.recipients,
           { ...newRecipien, userEmail: email, email, role: "Signer" },
+          ...prev.recipients,
         ],
       }));
     },
@@ -125,7 +125,7 @@ export function SaveDataProvider({ children }) {
         role: person.role ?? "Signer",
       })),
       template_id: dockumentData.template,
-      file_id: dockumentData.file?.file_id ?? "",
+      file_id: dockumentData.file ?? "",
     };
   }, [dockumentData]);
 

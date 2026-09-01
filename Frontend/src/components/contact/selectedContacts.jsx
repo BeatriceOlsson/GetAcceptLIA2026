@@ -7,15 +7,15 @@ export function SelectedContact() {
   const recipient = dockumentData ? dockumentData.recipients : [];
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col items-center gap-1">
       <h3 className="text-2xl">Mottagare</h3>
       {recipient.length === 0 ? (
-        <p>Ingen motagare vald</p>
+        <p></p>
       ) : (
         recipient.map((person, index) => (
           <ul
             key={`${person.userEmail ?? person.email ?? "recipient"}-${index}`}
-            className="border-2 border-gray-700 rounded-lg flex flex-row w-64 h-25 p-1 relative"
+            className="border-2 border-gray-700 rounded-lg shadow-lg flex flex-row w-56 h-25 p-1 relative"
           >
             <li>
               <BlueButton
@@ -32,7 +32,7 @@ export function SelectedContact() {
               <select
                 name="role"
                 id={`role-${index}`}
-                className="border-2 border-gray-700 rounded-lg hover:bg-gray-500 hover:text-white"
+                className="border-2 border-gray-700 rounded-lg hover:bg-gray-500 hover:text-orange-400"
                 value={person.role || "Signer"}
                 onChange={(e) =>
                   uppdateRecipientRole(

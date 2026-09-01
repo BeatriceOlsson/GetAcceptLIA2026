@@ -66,7 +66,7 @@ function GetContact({ addContacktPage }) {
   return (
     <div className=" flex flex-row gap-4 m-2">
       <form onSubmit={sendContackt} className="flex flex-row">
-        <div className=" flex flex-col relative pb-14 max-w-[500px] ">
+        <div className=" flex flex-col relative pb-14 max-w-[500px] mr-2">
           <InputField
             labelHTML={"email"}
             labelName={"Sök kontakt:"}
