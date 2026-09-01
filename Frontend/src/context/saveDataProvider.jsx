@@ -7,7 +7,7 @@ export function SaveDataProvider({ children }) {
     value: "",
     recipients: [],
     template: null,
-    file: null,
+    file_ids: null,
   });
 
   const getRecipientEmail = useCallback((person) => {
@@ -31,17 +31,26 @@ export function SaveDataProvider({ children }) {
     setDokumentData((prev) => ({ ...prev, [name]: value }));
   }, []);
 
-  const saveRecipient = useCallback((newRecipien) => {
-    const email = newRecipien?.userEmail ?? newRecipien?.email ?? "";
+  const saveRecipient = useCallback(
+    (newRecipien) => {
+      const email = newRecipien?.userEmail ?? newRecipien?.email ?? "";
 
-    setDokumentData((prev) => ({
-      ...prev,
-      recipients: [
-        ...prev.recipients,
-        { ...newRecipien, userEmail: email, email, role: "Signer" },
-      ],
-    }));
-  }, []);
+      for (const person of dockumentData.recipients) {
+        if (person.userEmail === email) {
+          return person;
+        }
+      }
+
+      setDokumentData((prev) => ({
+        ...prev,
+        recipients: [
+          ...prev.recipients,
+          { ...newRecipien, userEmail: email, email, role: "Signer" },
+        ],
+      }));
+    },
+    [dockumentData],
+  );
 
   const removeRecipient = useCallback(
     (recipienToRemove) => {
