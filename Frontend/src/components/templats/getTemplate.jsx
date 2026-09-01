@@ -4,10 +4,12 @@ import { useDockument } from "../../hooks/saveDataHook";
 import { LoadingHandling } from "../smalComponents/loadingHandling";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
+import SeartchFunction from "../seartchFuntion";
 
 function GetTemplate() {
   const { dockumentData, saveTemplate } = useDockument();
   const [templates, setTemplates] = useState([]);
+  const [filterdTemplate, setFilterdTemplate] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -26,6 +28,7 @@ function GetTemplate() {
           setErrorMessage(response.message);
         } else {
           setTemplates(response.templates || []);
+          setFilterdTemplate(response.template || []);
         }
       } catch (error) {
         errorMessage(error.message);
@@ -39,13 +42,23 @@ function GetTemplate() {
 
   return (
     <div className="">
-      <h2 className="flex items-center justify-center text-3xl font-bold">
-        Template
-      </h2>
+      <div className="flex flex-row items-center w-full px-4">
+        <h2 className="flex-1 text-center text-3xl font-bold pl-32">
+          Template
+        </h2>
+        <div className="ml-auto">
+          <SeartchFunction
+            className="w-1/2 flex justify-start pl-4"
+            data={templates}
+            seartchKey={["name", "sender_name"]}
+            filteredData={setFilterdTemplate}
+          />
+        </div>
+      </div>
       <ul className="flex items-center justify-center flex-row flex-wrap gap-5 m-4 cursor-pointer">
-        {Array.isArray(templates) &&
-          templates.length > 0 &&
-          templates.map((template) => {
+        {Array.isArray(filterdTemplate) &&
+          filterdTemplate.length > 0 &&
+          filterdTemplate.map((template) => {
             const templateId = template.id ?? template._id;
             const isSelected = dockumentData?.template === templateId;
 

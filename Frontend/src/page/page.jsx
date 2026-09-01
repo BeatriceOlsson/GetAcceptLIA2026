@@ -6,9 +6,10 @@ import AddContact from "../components/contact/addContact";
 import UploadFile from "../components/upploadingOfDokument/uploadFile";
 import { useLogdIn } from "../hooks/logInHook";
 import { BlueButton } from "../components/smalComponents/blueButton";
-//import { SelectedContact } from "../components/contact/selectedContacts";
 import NameAndValue from "../components/dockument/nameAndValue";
 import InactivityListener from "../components/smalComponents/inactivityListernner";
+import { SelectedContact } from "../components/contact/selectedContacts";
+import ShowDockumentData from "../components/dockument/showDockumentData";
 
 function Page() {
   const [addContactState, setAddContactState] = useState(false);
@@ -71,8 +72,8 @@ function Page() {
       <div className="fixed top-0 right-0 bottom-0 w-60 border-2 border-gray-700 rounded-lg mt-3 mb-3">
         <div className="flex flex-col justify-center items-center gap-2 mt-3">
           <CreateDocument />
-          <p>Text för plasering</p>
-          <p>Platts för att visa all data i dokukumentet innan det skickas</p>
+          <ShowDockumentData />
+          <SelectedContact />
         </div>
       </div>
       {/* 

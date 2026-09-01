@@ -39,7 +39,7 @@ function CreateDocument() {
     <div className=" flex flex-row gap-4 m-2">
       <form
         onSubmit={handelSendingDocument}
-        className=" flex flex-col items-end justify-center relative b-1 w-100 pb-16 gap-3"
+        className=" flex flex-col items-end justify-center relative b-1 w-100 gap-3"
       >
         <BlueButton type={"submit"} buttonText={"Skicka"} />
         {errorMessage && <ErrorMessage error={errorMessage} />}
