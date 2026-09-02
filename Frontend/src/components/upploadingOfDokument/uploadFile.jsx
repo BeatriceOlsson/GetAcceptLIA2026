@@ -10,11 +10,13 @@ import { useDockument } from "../../hooks/saveDataHook";
 import { PopUppWindow } from "../smalComponents/popUppWindow";
 import { BlueButton } from "../smalComponents/blueButton";
 import FetchBackend from "../fetchBackend";
+import { ErrorMessage } from "../smalComponents/errorMessage";
 
 function UploadFile() {
   const { getToken } = useLogdIn();
   const { upploudedFile } = useDockument();
   const [popUpp, setPopUpp] = useState(false);
+  const [errorMesage, setErrorMasage] = useState();
 
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -70,7 +72,7 @@ function UploadFile() {
 
         const payload = files[0];
 
-        console.log(files);
+        setErrorMasage(files);
 
         const response = await FetchBackend({
           url: "/file",
@@ -80,9 +82,9 @@ function UploadFile() {
         });
 
         if (!response.ok) {
-          console.log(response);
+          setErrorMasage(response);
         }
-        console.log(response);
+
         upploudedFile(response.details.file_id);
 
         instans.setFileState(successful[0].id, {
@@ -94,7 +96,7 @@ function UploadFile() {
           setPopUpp(true);
         }, 1000);
       } catch (error) {
-        console.log("Något gick fel: ", error);
+        errorMesage("Något gick fel: ", error);
       }
     });
 
@@ -119,6 +121,7 @@ function UploadFile() {
         width={250}
         hideUploadButton={false}
       />
+      <ErrorMessage error={errorMesage} />
     </div>
   );
 }

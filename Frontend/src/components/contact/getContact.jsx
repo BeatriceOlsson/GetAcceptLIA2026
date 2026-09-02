@@ -3,11 +3,13 @@ import { BlueButton } from "../smalComponents/blueButton";
 import { useDockument } from "../../hooks/saveDataHook";
 import FetchBackend from "../fetchBackend";
 import { InputField } from "../smalComponents/inputFiled";
+import { ErrorMessage } from "../smalComponents/errorMessage";
 
 function GetContact({ addContacktPage }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [selectedContact, setselectedContact] = useState(null);
+  const [errorMessage, setErrorMessage] = useState();
   const { saveRecipient } = useDockument();
 
   const handleSearchChange = (e) => {
@@ -51,12 +53,11 @@ function GetContact({ addContacktPage }) {
     e.preventDefault();
 
     if (!selectedContact) {
-      console.log("Data saknas ", selectedContact);
+      setErrorMessage("Data saknas ", selectedContact);
       return;
     }
 
     const contact = { ...selectedContact };
-    console.log(contact);
     saveRecipient(contact);
     setResults([]);
     setSearch("");
@@ -95,7 +96,7 @@ function GetContact({ addContacktPage }) {
             ))}
           </ul>
         ) : (
-          <p></p>
+          <ErrorMessage error={errorMessage} />
         )}
         <div className="top-5 right-0">
           <div className="flex flex-col">

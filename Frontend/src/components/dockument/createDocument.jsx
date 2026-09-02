@@ -14,7 +14,7 @@ function CreateDocument() {
     e.preventDefault();
 
     if (!isLogdIn) {
-      console.log("Behöver vara inlogad för att kunna spara kontakter.");
+      setErrorMasage("Behöver vara inlogad för att kunna spara kontakter.");
       return;
     }
 
@@ -30,8 +30,8 @@ function CreateDocument() {
         return;
       }
     } catch (error) {
-      console.error("Person kunde inte sparas: " + error);
-      setErrorMasage("Person kunde inte sparas.");
+      console.error("Dockumentet kunde inte skickas: " + error);
+      setErrorMasage("Dockumentet kunde inte skickas.");
     }
   };
 

@@ -7,16 +7,12 @@ const dbConection = KopplaUppTillDB();
 async function addContact (userData) {
     try {
         const db = await dbConection;
-        const email = userData.userEmail ?? userData.email;
-        const mobile = userData.userMobile ?? userData.mobile;
-        const firstN = userData.firstName ?? userData.firstN ?? null;
-        const lastN = userData.lastName ?? userData.lastN ?? null;
 
         const saved = await db.request()
-        .input('email', sql.VarChar(255), email)
-        .input('mobile', sql.VarChar(30), mobile)
-        .input('firstN', sql.VarChar(100), firstN)
-        .input('lastN', sql.VarChar(100), lastN)
+        .input('email', sql.VarChar(255), userData.email)
+        .input('mobile', sql.VarChar(30), userData.mobile)
+        .input('firstN', sql.VarChar(100), userData.firstName)
+        .input('lastN', sql.VarChar(100), userData.lastName)
         .query(
             `INSERT INTO userContact (userEmail, userMobile, firstName, lastName)
             VALUES (@email, @mobile, @firstN, @lastN);`

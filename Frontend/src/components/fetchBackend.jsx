@@ -1,5 +1,4 @@
 async function FetchBackend({ url, crud, body }) {
-  console.log(url, crud, body);
   const backendURL = import.meta.env.VITE_API_BACKEND_URL;
 
   try {
@@ -18,7 +17,6 @@ async function FetchBackend({ url, crud, body }) {
     const response = await fetch(`${backendURL}${url}`, dataToSend);
 
     const data = await response.json();
-    console.log(data);
     if (!response.ok) {
       throw new Error(data.message || "Okänt fel uppstog");
     }

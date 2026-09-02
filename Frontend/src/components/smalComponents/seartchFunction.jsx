@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { InputField } from "./smalComponents/inputFiled";
+import { InputField } from "./inputFiled";
 
 function SeartchFunction({ data = [], seartchKey = [], filteredData }) {
   const [seartchData, setSeartchData] = useState("");
 
-  const handelSeartchUppdate = (e) => {
+  const handelSeartchUpdate = (e) => {
     const value = e.target.value;
     setSeartchData(value);
   };
@@ -37,7 +37,7 @@ function SeartchFunction({ data = [], seartchKey = [], filteredData }) {
       labelName={"Sök..."}
       labelType={"text"}
       value={seartchData}
-      onChange={handelSeartchUppdate}
+      onChange={handelSeartchUpdate}
     />
   );
 }

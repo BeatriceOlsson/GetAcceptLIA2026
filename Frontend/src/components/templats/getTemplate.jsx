@@ -4,7 +4,7 @@ import { useDockument } from "../../hooks/saveDataHook";
 import { LoadingHandling } from "../smalComponents/loadingHandling";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
-import SeartchFunction from "../seartchFuntion";
+import SeartchFunction from "../smalComponents/seartchFunction";
 
 function GetTemplate() {
   const { dockumentData, saveTemplate } = useDockument();
@@ -68,8 +68,7 @@ function GetTemplate() {
                 template={template}
                 selected={isSelected}
                 onSelected={() => {
-                  const status = saveTemplate?.(templateId);
-                  console.log("Template status:", status);
+                  saveTemplate?.(templateId);
                 }}
               />
             );
