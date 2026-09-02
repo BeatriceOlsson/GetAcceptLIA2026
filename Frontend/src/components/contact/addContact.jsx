@@ -39,7 +39,6 @@ function AddContact({ hideContacktPage }) {
         setErrorMasage(responseNode.message || "Okänt fel uppstog");
         return;
       }
-      console.log("återställer värderna");
       setErrorMasage("");
       setFromForm({ email: "", mobile: "", firstName: "", lastName: "" });
     } catch (error) {

@@ -25,7 +25,7 @@ function Page() {
   };
 
   return (
-    <InactivityListener timeoutMs={90000000}>
+    <InactivityListener timeoutMs={900000}>
       <div className="bg-white p-4 mr-60">
         <div className="flex flex-row justify-start items-center gap-2 w-80">
           <BlueButton buttonClick={logOut} buttonText={"Logga ut"} />

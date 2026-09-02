@@ -33,7 +33,7 @@ export function SelectedContact() {
                 name="role"
                 id={`role-${index}`}
                 className="border-2 border-gray-700 rounded-lg hover:bg-gray-500 hover:text-orange-400"
-                value={person.role || "Signer"}
+                value={person.role || "signer"}
                 onChange={(e) =>
                   uppdateRecipientRole(
                     person.userEmail ?? person.email ?? person,
@@ -41,7 +41,7 @@ export function SelectedContact() {
                   )
                 }
               >
-                <option value="Signer">Signerare</option>
+                <option value="signer">Signerare</option>
                 <option value="internalApprover">Intern godkännare</option>
                 <option value="externalApprover">Extern godkännare</option>
                 <option value="cc">Läsare</option>

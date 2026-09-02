@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { SaveDataContext } from "./savedDataContext";
 
 export function SaveDataProvider({ children }) {
@@ -44,7 +44,7 @@ export function SaveDataProvider({ children }) {
       setDokumentData((prev) => ({
         ...prev,
         recipients: [
-          { ...newRecipien, userEmail: email, email, role: "Signer" },
+          { ...newRecipien, userEmail: email, email, role: "signer" },
           ...prev.recipients,
         ],
       }));
@@ -108,7 +108,7 @@ export function SaveDataProvider({ children }) {
       recipients: dockumentData.recipients.map((person) => ({
         ...person,
         email: person.userEmail ?? person.email ?? "",
-        role: person.role ?? "Signer",
+        role: person.role ?? "signer",
       })),
     };
   }, [dockumentData]);
@@ -122,10 +122,10 @@ export function SaveDataProvider({ children }) {
         mobile: person.mobile,
         firstName: person.firstName,
         lastName: person.lastName,
-        role: person.role ?? "Signer",
+        role: person.role ?? "signer",
       })),
       template_id: dockumentData.template,
-      file_id: dockumentData.file ?? "",
+      file_ids: dockumentData.file ?? "",
     };
   }, [dockumentData]);
 
@@ -152,9 +152,9 @@ export function SaveDataProvider({ children }) {
     resetDockument,
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log(dockumentData);
-  }, [dockumentData]);
+  }, [dockumentData]);*/
 
   return (
     <SaveDataContext.Provider value={data}>{children}</SaveDataContext.Provider>

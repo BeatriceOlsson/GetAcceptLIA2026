@@ -20,7 +20,6 @@ function NameAndValue() {
     }
 
     saveNameValue(sendData);
-    console.log(sendData);
   };
   return (
     <div className="max-w-2xl flex flex-row gap-4 m-2">
