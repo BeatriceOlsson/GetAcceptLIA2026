@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer'
 import logger from '../config/logger.js';
+import { PostApiConnection } from '../service/postApiConnection.js';
 
 const router = express.Router();
 
@@ -16,31 +17,14 @@ router.post('/', async (req, res) => {
         return res.status(401).json({ message: 'Behöver vara inloggad för att kunna gå vidare.' });
     }
 
-    try {
-        const file = {file_name: file_name, file_content: file_content};
+    const file = {file_name: file_name, file_content: file_content};
+    const postData= await PostApiConnection({
+        urlInput: '/v1/upload',
+        postBody: file,
+        req: req,
+        res: res,
+    })
 
-        const response = await fetch('https://api.getaccept.com/v1/upload', {
-            method: 'POST',
-            headers: {
-                'Authorization' : `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(file),
-        });
-
-        if(!response.ok) {
-            const errBody = await response.text().catch(() => '');
-            logger.error('Fil kunde inte skapas', { status: response.status, body: errBody });
-            return res.status(response.status).json({ message: 'Filen kunde inte sparas' });
-        }
-
-        const data = await response.json().catch(() => ({}));
-
-        return res.json({ message: 'Filen sparades.', details: data });
-    } catch (err) {
-        logger.error('Fel uppstod vid sparande av fil: ', { message: err.message, stack: err.stack });
-        return res.status(500).json({ message: 'Något gick fel vid sparande av fil.' });
-    }
 })
 
 export default router;

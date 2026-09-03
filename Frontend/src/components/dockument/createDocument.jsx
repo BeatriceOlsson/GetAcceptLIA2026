@@ -7,7 +7,7 @@ import FetchBackend from "../fetchBackend";
 
 function CreateDocument() {
   const { isLogdIn } = useLogdIn();
-  const { sendDockument } = useDockument();
+  const { sendDockument, resetDockument } = useDockument();
   const [errorMessage, setErrorMasage] = useState("");
 
   const handelSendingDocument = async (e) => {
@@ -28,6 +28,9 @@ function CreateDocument() {
       if (createDocumentNode instanceof Error) {
         setErrorMasage(createDocumentNode.message || "Okänt fel uppstog");
         return;
+      } else {
+        setErrorMasage("");
+        resetDockument();
       }
     } catch (error) {
       console.error("Dockumentet kunde inte skickas: " + error);

@@ -2,12 +2,21 @@ import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { LogdInContext } from "../../context/logedInContext";
 import { PopUppWindow } from "./popUppWindow";
 import { BlueButton } from "./blueButton";
+import { MsToMinets } from "./msToMinets";
+
+const getNow = () => Date.now();
 
 function InactivityListener({ timeoutMs = 900000, children }) {
   const { isLogdIn, logOut } = useContext(LogdInContext);
   const timeoutRef = useRef(null);
   const showingPopUppRef = useRef(false);
+  const lastActiveRef = useRef(0);
+  const popUppTimerRef = useRef(null);
   const [showPopUpp, setShowPopUpp] = useState(false);
+  const [minLeft, setMinLeft] = useState(0);
+  const countdownRef = useRef(null);
+
+  const warningTime = 5 * 60 * 1000;
 
   useEffect(() => {
     showingPopUppRef.current = showPopUpp;
@@ -18,16 +27,39 @@ function InactivityListener({ timeoutMs = 900000, children }) {
       window.clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
+    if (popUppTimerRef.current) {
+      window.clearTimeout(popUppTimerRef.current);
+      popUppTimerRef.current = null;
+    }
     setShowPopUpp(false);
   }, []);
+
+  const startCountdown = useCallback(() => {
+    setMinLeft(warningTime);
+
+    countdownRef.current = window.setInterval(() => {
+      setMinLeft((prevMin) => {
+        const nextMin = Math.max(0, prevMin - 1000);
+
+        if (nextMin <= 0) {
+          window.clearInterval(countdownRef.current);
+        }
+        return nextMin;
+      });
+    }, 1000);
+  }, [warningTime]);
 
   const timeUppdate = useCallback(() => {
     clearTime();
 
     if (isLogdIn) {
+      const timeToWarning = timeoutMs - warningTime;
+      const delayTime = timeToWarning > 0 ? timeToWarning : 0;
+      console.log(timeToWarning);
       timeoutRef.current = window.setTimeout(() => {
         setShowPopUpp(true);
-      }, timeoutMs);
+        startCountdown();
+      }, delayTime);
     }
   }, [clearTime, isLogdIn, timeoutMs]);
 
@@ -45,6 +77,15 @@ function InactivityListener({ timeoutMs = 900000, children }) {
       if (showingPopUppRef.current) {
         return;
       }
+
+      let now = getNow();
+
+      if (now - lastActiveRef.current < 2000) {
+        return;
+      }
+
+      lastActiveRef.current = now;
+
       timeUppdate();
     };
 
@@ -52,9 +93,7 @@ function InactivityListener({ timeoutMs = 900000, children }) {
     event.forEach((event) => document.addEventListener(event, handleActivity));
 
     return () => {
-      if (timeoutRef.current) {
-        window.clearTimeout(timeoutRef.current);
-      }
+      clearTime();
       event.forEach((event) =>
         document.removeEventListener(event, handleActivity),
       );
@@ -63,7 +102,7 @@ function InactivityListener({ timeoutMs = 900000, children }) {
 
   const handelLogOut = () => {
     showingPopUppRef.current = false;
-    setShowPopUpp(true);
+    setShowPopUpp(false);
     clearTime();
     logOut();
   };
@@ -77,7 +116,6 @@ function InactivityListener({ timeoutMs = 900000, children }) {
 
   return (
     <div>
-      {" "}
       {showPopUpp && (
         <PopUppWindow
           isOpen={showPopUpp}
@@ -87,6 +125,7 @@ function InactivityListener({ timeoutMs = 900000, children }) {
               <p>
                 Du har varit inaktiv ett tag. Vill du fortsätta vara inloggad?
               </p>
+              <MsToMinets ms={minLeft} />
               <div className="flex gap-3">
                 <BlueButton
                   buttonText={"Stanna inloggad"}

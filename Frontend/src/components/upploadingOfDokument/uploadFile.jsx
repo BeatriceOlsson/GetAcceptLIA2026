@@ -96,7 +96,7 @@ function UploadFile() {
           setPopUpp(true);
         }, 1000);
       } catch (error) {
-        errorMesage("Något gick fel: ", error);
+        setErrorMasage("Något gick fel: ", error);
       }
     });
 
