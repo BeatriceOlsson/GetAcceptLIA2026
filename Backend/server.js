@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv'
 import logger from './config/logger.js';
 import { loginUser } from './controller/loginuser.js';
 import KopplaUppTillDB from './config/DBConetion.js';
@@ -9,6 +10,8 @@ import getTemplateRouter from './routes/getTemplate.js';
 import createFileRouter from './routes/createFile.js';
 import isLogdInRouter from './routes/isLogdIn.js'
 import cookieParser from 'cookie-parser';
+
+dotenv.config();
 const app = express();
 KopplaUppTillDB();
 
@@ -33,7 +36,8 @@ app.use('/createDocument', createDocumentRouter);
 app.use('/template', getTemplateRouter);
 app.use('/file', createFileRouter);
 
+const port = process.env.PORT || 3000;
 
-app.listen(3000, () => {
+app.listen(port, () => {
     logger.info('Servern kör på port 3000');
 })

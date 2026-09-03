@@ -25,7 +25,7 @@ function Page() {
   };
 
   return (
-    <InactivityListener timeoutMs={900000}>
+    <InactivityListener timeoutMs={9000000}>
       <div className="bg-white p-4 mr-60">
         <div className="flex flex-row justify-start items-center gap-2 w-80">
           <BlueButton buttonClick={logOut} buttonText={"Logga ut"} />
@@ -76,43 +76,6 @@ function Page() {
           <SelectedContact />
         </div>
       </div>
-      {/* 
-        <div className="flex flex-row justify-evenly">
-          <div className="w-80 relative">
-            <GetContact addContacktPage={showAddContact} />
-          </div>
-          <div
-            className={`absolute transition-all duration-300 ease-in-out top-40 left-40 z-50 ${
-              addContactState
-                ? "opacity-100 translate-x-0 pointer-events-auto bg-white"
-                : "opacity-0 -translate-y-4 pointer-events-none"
-            }`}
-          >
-            <AddContact hideContacktPage={showAddContact} />
-          </div>
-          <div className="flex flex-col">
-            <NameAndValue />
-            <CreateDocument />
-          </div>
-          <SelectedContact />
-        </div>
-        <div className="ml-11">
-          <BlueButton
-            buttonClick={showAlternativToTemplate}
-            buttonText={"Bild eller Länk"}
-          />
-          <div
-            className={`transition-all duration-300 ease-in-out ${
-              imageLink
-                ? "max-h-[500px] opacity-100 translate-x-0 pointer-events-auto bg-white"
-                : "max-h-0 opacity-0 -translate-y-4 pointer-events-none"
-            }`}
-          >
-            <UploadFile />
-          </div>
-        </div>
-        <div className="flex items-center justify-center">
-          <GetTemplate />*/}
     </InactivityListener>
   );
 }

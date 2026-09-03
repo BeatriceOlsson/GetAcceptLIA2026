@@ -1,5 +1,6 @@
 import express from 'express';
 import logger from '../config/logger.js';
+import { PostApiConnection } from '../service/postApiConnection.js';
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.post('/', async (req, res) => {
         return res.status(400).json({message:'Dokumentet behöver ha ett namn med minst ett tecken'});
     }
 
-    if(!file_ur || !file_ids || !template_id) {
+    if(!file_ur && !file_ids && !template_id) {
         return res.status(400).json({message:'Behöver finas en fil eller template att skicka.'});
     }
 
@@ -40,32 +41,13 @@ router.post('/', async (req, res) => {
     }
 
     try {
-        const token = req.cookies.auth_token;
+     const postData = await PostApiConnection({
+        urlInput: '/v1/documents',
+        postBody: apiStrucktur,
+        req: req,
+        res: res,
+    })   
 
-        if(!token) {
-            return res.status(401).json({ message: "Du måste vara inloggad för att spara dokument." });
-        }
-
-        const response = await fetch('https://api.getaccept.com/v1/documents', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify(apiStrucktur),
-        })
-
-        // Some responses may have an empty body (204) or non-JSON body; read as text first
-        const text = await response.text();
-        //console.log("Svar tillabcka: ", text)
-
-        if(!response.ok) {
-            //console.log({status: response.status, errorDitail: data});
-            logger.error(`Data motagen ej ok`, {status: response.status, errorDitail: data});
-            return res.status(response.status).json({message: (data && data.message) || "Dokument kunde inte sparas."})
-        }
-
-        res.json({message:'Dokument sparades.'});
     } catch (error) {
         logger.error('Fel vid sparande av dokument i GetAccept', {
             message: error.message,
@@ -73,6 +55,7 @@ router.post('/', async (req, res) => {
         });
         return res.status(500).json({ message: 'Server problem vid inlogning' });
     }
+
 })
 
 export default router;
