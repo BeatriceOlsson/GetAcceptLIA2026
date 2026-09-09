@@ -104,7 +104,7 @@ function UploadFile() {
   }, [getToken, upploudedFile]);
 
   return (
-    <div className="m-4">
+    <div>
       <PopUppWindow
         isOpen={popUpp}
         title={"Filen ladades upp."}

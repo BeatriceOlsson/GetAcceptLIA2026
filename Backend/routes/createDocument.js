@@ -1,6 +1,8 @@
 import express from 'express';
 import logger from '../config/logger.js';
 import { PostApiConnection } from '../service/postApiConnection.js';
+import { addSentDocument, getDokumentUser } from '../config/documentControler.js'
+import { getDokumentPreview } from '../config/getDokumentController.js';
 
 const router = express.Router();
 
@@ -48,14 +50,55 @@ router.post('/', async (req, res) => {
         res: res,
     })   
 
+    console.log(postData)
+    addSentDocument(postData);
+
     } catch (error) {
         logger.error('Fel vid sparande av dokument i GetAccept', {
             message: error.message,
             stack: error.stack
         });
-        return res.status(500).json({ message: 'Server problem vid inlogning' });
+        return res.status(500).json({ message: 'Problem vid skapapnde av dockument' });
     }
 
 })
+
+router.post('/documentUser', async (req , res) => {
+    const {userEmail} = req.body;
+
+    if(!userEmail || typeof userEmail !== 'string') {
+        return res.status(400).json({message: "Datan som motogs är ej acepterad."})
+        logger.error("Anrop till db med mistänksam id: ", id)
+    }
+
+    const strukturOfMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!strukturOfMail.test(userEmail)) {
+        return res.status(400).json({message: "De skcikade id kan bara bestå av sifror och bokstäver."});
+        logger.error("Anrop till db innehöl mistänksama täckn. ", id);
+    }
+    try {
+        const userDockument = await getDokumentUser(userEmail);
+
+
+        const dockumentPreview = await getDokumentPreview(userDockument, req);
+
+        return res.status(200).json(dockumentPreview);
+    } catch (error) {
+        logger.error("Fel vid hämtning av dockument data: ", error);
+        return res.status(500).json({message: "Fel uppstog i server vid hämtning av data."})
+    }
+})
+
+router.get('/dockumentId', async (req, res) => {
+    try {
+        const dockumentId = await getDokumnetId();
+
+        return res.status(200).json(dockumentId);
+    } catch (error) {
+        logger.error("Fel vid hämtning av dockument data: ", error);
+        return res.status(500).json({message: "Fel uppstog i server vid hämtning av data."})
+    }
+})
+
 
 export default router;
