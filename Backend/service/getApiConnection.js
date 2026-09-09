@@ -1,6 +1,7 @@
+import { error } from "node:console";
 import logger from "../config/logger.js";
 
-export async function GetApiConnection({urlInput, req, res}) {
+export async function GetApiConnection({urlInput, req}) {
     const token = req.cookies.auth_token;
     const api = process.env.API_URL;
     
@@ -12,13 +13,13 @@ export async function GetApiConnection({urlInput, req, res}) {
         })
      
         if(!response.ok) {
-            logger.error('Kunde inte hämta data: ', { status: response.status, body: errBody });
-            return res.status(response.status).json({ message: 'Error: ', status: response.status });
+            logger.error('Kunde inte hämta data: ', { status: response.status, body: errorText });
+            return new Error( 'Error: ', response.status);
         }
 
         const data = await response.json();
 
-        return res.status(200).json( data );
+        return data;
 
     } catch (error) {
         logger.error('Fel uppstod vid hämtning av data: ', { message: error.message, stack: error.stack });

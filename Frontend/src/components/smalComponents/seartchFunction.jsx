@@ -36,6 +36,8 @@ function SeartchFunction({ data = [], seartchKey = [], filteredData }) {
     <InputField
       labelName={"Sök..."}
       labelType={"text"}
+      width={"w-60"}
+      className={"mr-9"}
       value={seartchData}
       onChange={handelSeartchUpdate}
     />

@@ -1,3 +1,5 @@
+import { Tooltips } from "./tooltips";
+
 export function InputField({
   labelHTML,
   labelName,
@@ -7,12 +9,15 @@ export function InputField({
   onChange,
   name,
   className,
+  width = "w-72",
   onBlur,
+  titleText,
 }) {
   return (
-    <div className={`flex flex-col ${className}`}>
-      <label htmlFor={labelHTML} className="text-xl m-1">
+    <div className={`flex flex-col`}>
+      <label htmlFor={labelHTML} className="text-xl m-1 flex flex-row">
         {labelName}
+        <Tooltips titleText={titleText} />
       </label>
       <input
         type={labelType}
@@ -21,7 +26,7 @@ export function InputField({
         onChange={onChange}
         name={name}
         onBlur={onBlur}
-        className="rounded-lg border-2 border-gray-700 w-80 h-9 gap-2 p-2 focus:bg-orange-50"
+        className={`rounded-lg border-2 border-gray-700 h-9 gap-2 p-2 focus:bg-orange-50 ${width} ${className}`}
       />
     </div>
   );

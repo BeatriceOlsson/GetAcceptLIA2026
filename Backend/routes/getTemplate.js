@@ -14,8 +14,9 @@ router.get('/', async (req, res) => {
     const getData = await GetApiConnection({
         urlInput:'/v1/templates',
         req: req,
-        res: res
     })
+
+    return res.status(200).json(getData);
   
 })
 

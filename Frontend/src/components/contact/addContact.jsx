@@ -4,9 +4,11 @@ import { BlueButton } from "../smalComponents/blueButton";
 import { InputField } from "../smalComponents/inputFiled";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
+import { useDockument } from "../../hooks/saveDataHook";
 
 function AddContact({ hideContacktPage }) {
   const { isLogdIn } = useLogdIn();
+  const { saveRecipient } = useDockument();
   const [errorMesage, setErrorMasage] = useState("");
   const [fromForm, setFromForm] = useState({
     email: "",
@@ -39,8 +41,11 @@ function AddContact({ hideContacktPage }) {
         setErrorMasage(responseNode.message || "Okänt fel uppstog");
         return;
       }
+      saveRecipient(fromForm);
       setErrorMasage("");
+      console.log("person försökte skappas: ", fromForm, "", responseNode);
       setFromForm({ email: "", mobile: "", firstName: "", lastName: "" });
+      hideContacktPage();
     } catch (error) {
       console.error("Person kunde inte sparas: " + error);
       setErrorMasage("Person kunde inte sparas.");

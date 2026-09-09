@@ -48,7 +48,7 @@ function GetTemplate() {
         </h2>
         <div className="ml-auto">
           <SeartchFunction
-            className="w-1/2 flex justify-start pl-4"
+            className="w-40 flex justify-end pl-4"
             data={templates}
             seartchKey={["name", "sender_name"]}
             filteredData={setFilterdTemplate}

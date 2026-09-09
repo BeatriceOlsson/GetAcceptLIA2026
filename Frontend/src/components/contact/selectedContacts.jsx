@@ -8,14 +8,13 @@ export function SelectedContact() {
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <h3 className="text-2xl">Mottagare</h3>
       {recipient.length === 0 ? (
         <p></p>
       ) : (
         recipient.map((person, index) => (
           <ul
             key={`${person.userEmail ?? person.email ?? "recipient"}-${index}`}
-            className="border-2 border-gray-700 rounded-lg shadow-lg flex flex-row w-56 h-25 p-1 relative"
+            className="border-2 border-gray-700 rounded-lg shadow-lg flex flex-row w-52 h-25 p-1 ml-1 mb-2 relative "
           >
             <li>
               <BlueButton

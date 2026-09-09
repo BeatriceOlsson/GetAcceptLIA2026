@@ -18,7 +18,12 @@ router.post('/', async (req, res) => {
     
     const email = req.body.email ?? req.body.userEmail;
     const mobile = req.body.mobile ?? req.body.userMobile;
-   
+
+    const existingEmail = await getContact(email);
+    if(existingEmail.length > 0) {
+        return res.status(400).json({message:'Angivna mail fins redan registrerat'})
+    }
+
     if(!email || !mobile) {
         return res.status(400).json({ message:'Email och mobile behöver vara ifylt.'})
     }
@@ -27,6 +32,7 @@ router.post('/', async (req, res) => {
     if(!mailCheck.test(email)) {
         return res.status(400).json({message: 'Mailen godkändes inte.'})
     }
+
 
     try {
         const data = await addContact(req.body);

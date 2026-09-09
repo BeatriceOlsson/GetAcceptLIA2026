@@ -5,9 +5,9 @@ import { useDockument } from "../../hooks/saveDataHook";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
 
-function CreateDocument() {
+function CreateDocument({ dockumentSent }) {
   const { isLogdIn } = useLogdIn();
-  const { sendDockument, resetDockument } = useDockument();
+  const { sendDockument } = useDockument();
   const [errorMessage, setErrorMasage] = useState("");
 
   const handelSendingDocument = async (e) => {
@@ -30,7 +30,7 @@ function CreateDocument() {
         return;
       } else {
         setErrorMasage("");
-        resetDockument();
+        dockumentSent();
       }
     } catch (error) {
       console.error("Dockumentet kunde inte skickas: " + error);

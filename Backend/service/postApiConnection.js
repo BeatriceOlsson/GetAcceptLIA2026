@@ -22,6 +22,7 @@ export async function PostApiConnection({urlInput, postBody, req, res}){
         const data= await response.json();
 
         res.status(200).json({ message: 'Datan har sparats', details: data});
+        return data;
     } catch (error) {
         logger.error('Fel uppstod vid sparande av data: ', { message: error.message, stack: error.stack });
         return res.status(500).json({ message: 'Fel uppstod vid sparande av data.' });

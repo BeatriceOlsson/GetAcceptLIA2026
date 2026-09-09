@@ -31,6 +31,9 @@ function NameAndValue() {
           labelHTML={"name"}
           labelType={"text"}
           labelName={"Dokument namn"}
+          titleText={
+            "Namnet dockumentet kommer ha när de sickas till motagare."
+          }
           name={"name"}
           value={sendData.name}
           onChange={handelInputDocument}
@@ -39,7 +42,8 @@ function NameAndValue() {
         <InputField
           labelHTML={"value"}
           labelType={"number"}
-          labelName={"Value"}
+          labelName={"Värdet (SKR)"}
+          titleText={"Kosnaden som kommer vara kopplat till dockumentet."}
           name={"value"}
           value={sendData.value}
           onChange={handelInputDocument}

@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { BlueButton } from "../smalComponents/blueButton";
 import { useDockument } from "../../hooks/saveDataHook";
 import FetchBackend from "../fetchBackend";
 import { InputField } from "../smalComponents/inputFiled";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 
-function GetContact({ addContacktPage }) {
+function GetContact() {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
-  const [selectedContact, setselectedContact] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const { saveRecipient } = useDockument();
 
@@ -49,19 +47,18 @@ function GetContact({ addContacktPage }) {
     return () => clearTimeout(timeoutId);
   }, [search]);
 
-  const sendContackt = async (e) => {
+  const sendContackt = async (e, person) => {
     e.preventDefault();
 
-    if (!selectedContact) {
-      setErrorMessage("Data saknas ", selectedContact);
+    if (!person) {
+      setErrorMessage("Data saknas.");
       return;
     }
 
-    const contact = { ...selectedContact };
+    const contact = { ...person };
     saveRecipient(contact);
     setResults([]);
     setSearch("");
-    setselectedContact(null);
   };
 
   return (
@@ -74,18 +71,16 @@ function GetContact({ addContacktPage }) {
             labelType={"text"}
             value={search}
             onChange={handleSearchChange}
-            className={"static"}
           />
         </div>
         {results.length > 0 ? (
-          <ul className="absolute top-20 left-1 bg-white ease-in-out z-50">
+          <ul className="absolute mt-16 bg-white rounded-lg ease-in-out z-50">
             {results.map((person, index) => (
               <li
                 key={`${person.userEmail || "contact"}-${index}`}
                 className="flex flex-row justify-between w-80 p-1 cursor-pointer"
-                onClick={() => {
-                  setSearch(person.userEmail);
-                  setselectedContact(person);
+                onClick={(e) => {
+                  sendContackt(e, person);
                 }}
               >
                 <p className="text-l m-1">{person.userEmail}</p>
@@ -98,16 +93,6 @@ function GetContact({ addContacktPage }) {
         ) : (
           <ErrorMessage error={errorMessage} />
         )}
-        <div className="top-5 right-0">
-          <div className="flex flex-col">
-            <BlueButton type="submit" buttonText={"Läg till"} />
-            <BlueButton
-              type="button"
-              buttonClick={addContacktPage}
-              buttonText={"Läg till kontakt"}
-            />
-          </div>
-        </div>
       </form>
     </div>
   );
