@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { LogdInContext } from "../context/logedInContext";
 import { PopUppWindow } from "../components/smalComponents/popUppWindow";
 import { BlueButton } from "../components/smalComponents/blueButton";
@@ -6,16 +6,27 @@ import { MsToMinets } from "../components/smalComponents/msToMinets";
 import useCountdownManagement from "../hooks/useCountdownManagement";
 import { useLogdIn } from "../hooks/logInHook";
 
+const getNow = () => Date.now();
+
 function InactivityListener({ timeoutMs = 900000, children }) {
-  const { isLogdIn, logOut, refrechLogIn, timeLeft } =
-    useContext(LogdInContext);
+  const { isLogdIn, logOut, refrechLogIn } = useContext(LogdInContext);
   const { getToken } = useLogdIn();
+  const tokenString = getToken();
+
+  const setTimeSTamp = useMemo(() => {
+    const expiresAt = Number(tokenString);
+    if (!isLogdIn || !expiresAt || Number.isNaN(expiresAt)) return 0;
+
+    const now = getNow();
+    const msLeftOfToken = expiresAt - now;
+
+    return Math.max(0, msLeftOfToken);
+  }, [tokenString, isLogdIn]);
 
   const inactivity = useCountdownManagement({ timeoutMs, logdin: isLogdIn });
-  const tokenTimeMs = Math.max(0, timeLeft || getToken());
 
   const token = useCountdownManagement({
-    timeoutMs: tokenTimeMs,
+    timeoutMs: setTimeSTamp,
     logdin: isLogdIn,
     ignoreActive: true,
   });
@@ -32,7 +43,6 @@ function InactivityListener({ timeoutMs = 900000, children }) {
     inactivity.popUppStay();
     token.popUppStay();
     refrechLogIn();
-    console.log("Anroop för förnyande av ticken implementering.");
   };
 
   const shuldPopUppShow = inactivity.showPopUpp || token.showPopUpp;

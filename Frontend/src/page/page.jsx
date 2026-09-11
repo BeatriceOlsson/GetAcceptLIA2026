@@ -10,14 +10,16 @@ import NameAndValue from "../components/dockument/nameAndValue";
 import InactivityListener from "../timeManagement/inactivityListernner";
 import { SelectedContact } from "../components/contact/selectedContacts";
 import ShowDockumentData from "../components/dockument/showDockumentData";
-import { PopUppWindow } from "../components/smalComponents/popUppWindow";
 import { useDockument } from "../hooks/saveDataHook";
 import ScrollIntoView from "../components/smalComponents/scrollIntoView";
+import { BigPopUppWindow } from "../components/smalComponents/biggPopUppWindow";
+import { DokumentDataPreview } from "../components/dockument/dokumentDataPreview";
 
 function Page() {
   const [addContactState, setAddContactState] = useState(false);
   const [imageLink, setImageLink] = useState(false);
   const [dockumentSent, setDokumentSent] = useState(false);
+  const [showDocPreview, setShowDocPreview] = useState(false);
   const scrollToTopRef = useRef(null);
   const { resetDockument } = useDockument();
   const { logOut } = useLogdIn();
@@ -39,29 +41,50 @@ function Page() {
     setDokumentSent(false);
   };
 
+  const showDockumentPreview = () => {
+    setShowDocPreview(!showDocPreview);
+  };
+
   return (
     <InactivityListener timeoutMs={90000000}>
       <div className="grid md:grid-cols-[0.5fr_4fr_1fr] bg-white p-4">
-        <PopUppWindow
+        <BigPopUppWindow
           isOpen={dockumentSent}
           title={"Följande  dockument har skickats:"}
           content={
-            <div>
-              <ShowDockumentData />
+            <div className="flex flex-col justify-center items-center w-full max-w-[80vw]">
               <div className="">
-                <SelectedContact />
+                <ShowDockumentData />
+                <h3 className="text-2xl">Mottagare</h3>
               </div>
+              <div className="flex flex-row flex-wrap items-center justify-start gap-4 w-full">
+                <SelectedContact className="inline-flex flex-col" />
+              </div>
+              <div className="flex justify-center mt-4">
+                <BlueButton
+                  buttonText="Stäng"
+                  buttonClick={clowsPopUppAndRemoveData}
+                />
+              </div>
+            </div>
+          }
+        />
+        <BigPopUppWindow
+          isOpen={showDocPreview}
+          content={
+            <div>
+              <DokumentDataPreview />
               <BlueButton
+                className="fixed bottom-14 left-[45%]"
                 buttonText="Stäng"
-                buttonClick={clowsPopUppAndRemoveData}
+                buttonClick={showDockumentPreview}
               />
             </div>
           }
         />
-
         <div
           ref={scrollToTopRef}
-          className=" bg-green-300 col-start-2 grid  grid-cols-[0.5fr_3fr] gap-3"
+          className="col-start-2 grid  grid-cols-[0.5fr_3fr] gap-3"
         >
           <div className="flex flex-row justify-start items-center w-36">
             <BlueButton
@@ -81,19 +104,25 @@ function Page() {
           </div>
         </div>
 
-        <div className="bg-orange-400 col-start-2 grid md:grid-cols-[2fr_2fr_1fr] ">
-          <div className=" bg-blue-800 ">
+        <div className="col-start-2 grid md:grid-cols-[2fr_2fr_1fr] ">
+          <div>
             <NameAndValue />
           </div>
-          <div className="bg-green-500 ">
+          <div>
             <GetContact />
           </div>
-          <div className="bg-indigo-300 relative">
+          <div className="relative">
             <BlueButton
               type="button"
               buttonClick={showAddContact}
               buttonText={"Läg till kontakt"}
               className="m-2 mt-10"
+            />
+            <BlueButton
+              type="button"
+              buttonText={"Sök Dokument"}
+              className="m-2 mt-7"
+              buttonClick={showDockumentPreview}
             />
             <div
               className={`absolute transition-all duration-300 ease-in-out top-20 right-8 z-50 ${
@@ -107,8 +136,8 @@ function Page() {
           </div>
         </div>
 
-        <div className="col-start-2 bg-pink-300">
-          <div className="bg-amber-300 m-1">
+        <div className="col-start-2">
+          <div className="m-1">
             <BlueButton
               buttonClick={showAlternativToTemplate}
               buttonText={"Bild eller Länk"}
@@ -128,19 +157,19 @@ function Page() {
             >
               <UploadFile />
             </div>
-            <div className="flex items-center justify-center bg-amber-300 ">
+            <div className="flex items-center justify-center">
               <GetTemplate />
             </div>
           </div>
         </div>
 
-        <div className="grid row-span-4 bg-slate-400">
+        <div className="grid row-span-4">
           <div className="fixed top-0 right-0 bottom-0 w-56 border-2 border-gray-700 rounded-lg mt-3.5 mb-3.5 ">
             <div className="flex flex-col justify-center items-center gap-2 mt-3">
               <CreateDocument dockumentSent={dockumentSentOk} />
               <ShowDockumentData />
               <h3 className="text-2xl">Mottagare</h3>
-              <div className="overflow-y-auto pb-2 max-h-[calc(80vh-220px)]">
+              <div className="overflow-y-auto pb-2 max-h-[calc(80vh-220px)] flex flex-col items-center gap-1">
                 <SelectedContact />
               </div>
             </div>

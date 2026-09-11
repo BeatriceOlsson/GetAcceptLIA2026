@@ -4,7 +4,7 @@ import FetchBackend from "../fetchBackend";
 import { InputField } from "../smalComponents/inputFiled";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 
-function GetContact() {
+function GetContact({ userData = () => {}, returnToParent = false }) {
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
@@ -56,7 +56,12 @@ function GetContact() {
     }
 
     const contact = { ...person };
-    saveRecipient(contact);
+
+    if (returnToParent) {
+      userData(contact);
+    } else {
+      saveRecipient(contact);
+    }
     setResults([]);
     setSearch("");
   };
