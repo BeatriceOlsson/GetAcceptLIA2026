@@ -18,7 +18,7 @@ export async function getDokumentPreview(dockument, req, res) {
 
             if(response instanceof Error) {
                 logger.error("Fel vid hämtning av dockument: ", error );
-                console.log("Fel uppstog: ", error);
+
                 continue;
             }
             if(response) {
@@ -29,6 +29,5 @@ export async function getDokumentPreview(dockument, req, res) {
         return dockumentPreview;
     } catch (error) {
         logger.error("Fel vid hämtning av dockument: ", error );
-                console.log("Fel uppstog: ", error)
     }
 }

@@ -1,20 +1,20 @@
 import { useDockument } from "../../hooks/saveDataHook";
 import { BlueButton } from "../smalComponents/blueButton";
 
-export function SelectedContact() {
+export function SelectedContact({ className = "" }) {
   const { dockumentData, removeRecipient, uppdateRecipientRole } =
     useDockument();
   const recipient = dockumentData ? dockumentData.recipients : [];
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="">
       {recipient.length === 0 ? (
         <p></p>
       ) : (
         recipient.map((person, index) => (
           <ul
             key={`${person.userEmail ?? person.email ?? "recipient"}-${index}`}
-            className="border-2 border-gray-700 rounded-lg shadow-lg flex flex-row w-52 h-25 p-1 ml-1 mb-2 relative "
+            className={`border-2 border-gray-700 rounded-lg shadow-lg flex flex-row w-52 h-25 p-1 ml-1 mb-2 relative ${className}`}
           >
             <li>
               <BlueButton

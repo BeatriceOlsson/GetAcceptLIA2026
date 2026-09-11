@@ -11,6 +11,7 @@ export default function useCountdownManagement({
   const countdownRef = useRef(null);
   const showingPopUppRef = useRef(false);
   const lastActiveRef = useRef(0);
+  const endTimeRef = useRef(0);
   const [showPopUpp, setShowPopUpp] = useState(false);
   const [minLeft, setMinLeft] = useState(0);
 
@@ -36,14 +37,14 @@ export default function useCountdownManagement({
     setMinLeft(warningTime);
 
     countdownRef.current = window.setInterval(() => {
-      setMinLeft((prevMin) => {
-        const nextMin = Math.max(0, prevMin - 1000);
+      const now = getNow();
+      const timeLeft = Math.max(0, endTimeRef.current - now);
 
-        if (nextMin <= 0) {
-          window.clearInterval(countdownRef.current);
-        }
-        return nextMin;
-      });
+      setMinLeft(timeLeft);
+
+      if (timeLeft <= 0) {
+        window.clearInterval(countdownRef.current);
+      }
     }, 1000);
   }, [warningTime]);
 
@@ -58,13 +59,15 @@ export default function useCountdownManagement({
       return;
     }
 
+    const now = getNow();
+    endTimeRef.current = now + timeoutMs;
+
     const timeToWarning = Math.max(0, timeoutMs - warningTime);
-    const delayTime = timeToWarning > 0 ? timeToWarning : 0;
 
     timeoutRef.current = window.setTimeout(() => {
       setShowPopUpp(true);
       startCountdown();
-    }, delayTime);
+    }, timeToWarning);
   }, [clearTime, logdin, timeoutMs, warningTime, startCountdown]);
 
   useEffect(() => {
@@ -91,7 +94,6 @@ export default function useCountdownManagement({
       }
 
       lastActiveRef.current = now;
-
       timeUppdate();
     };
 

@@ -50,7 +50,6 @@ router.post('/', async (req, res) => {
         res: res,
     })   
 
-    console.log(postData)
     addSentDocument(postData);
 
     } catch (error) {
@@ -81,7 +80,7 @@ router.post('/documentUser', async (req , res) => {
 
 
         const dockumentPreview = await getDokumentPreview(userDockument, req);
-
+        
         return res.status(200).json(dockumentPreview);
     } catch (error) {
         logger.error("Fel vid hämtning av dockument data: ", error);

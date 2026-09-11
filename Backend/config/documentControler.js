@@ -23,8 +23,7 @@ async function addSentDocument(documentRes) {
                 firstName: userData.first_name,
                 lastName: userData.last_name,
             }
-            console.log(newUserContact);
-
+            
             await addContact(newUserContact);
         }
     }
@@ -53,6 +52,7 @@ async function addSentDocument(documentRes) {
 }
 
 async function getDokumentUser(userEmail) {
+
     try {
         const db = await dbConection;
         const result = await db.request()
@@ -77,7 +77,7 @@ async function getDokumnetId() {
 
         return result.recordset || [];
     } catch (error) {
-        console.log(error);
+        logger.error(error);
     }
 }
 
