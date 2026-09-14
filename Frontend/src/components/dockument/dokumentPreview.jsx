@@ -44,6 +44,7 @@ export function DokumentPreview({ email }) {
       previewURL(email);
     }
   }, [email]);
+
   return (
     <div className="overflow-y-auto max-h-[calc(96vh-220px)] ">
       {previewDokumet &&
@@ -55,7 +56,7 @@ export function DokumentPreview({ email }) {
               title="`Preview av dockument ${index +1}`"
               frameBorder="0"
               allow="fullscreen; clipboard-read; clipboard-write"
-              className=" w-[78vw] h-[60vh]"
+              className=" w-[78vw] h-[60vh] xl:mt-8"
             ></iframe>
           </div>
         ))}

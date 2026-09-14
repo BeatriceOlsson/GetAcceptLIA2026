@@ -4,6 +4,7 @@ import Login from "./components/logIn/login";
 import { LogdInProvider } from "./context/logdInProvider";
 import { useLogdIn } from "./hooks/logInHook";
 import { SaveDataProvider } from "./context/saveDataProvider";
+import { ContactHandlerProvider } from "./context/ContactHandlerProvider";
 
 function AppContent() {
   const { isLogdIn } = useLogdIn();
@@ -15,7 +16,9 @@ function App() {
   return (
     <LogdInProvider>
       <SaveDataProvider>
-        <AppContent />
+        <ContactHandlerProvider>
+          <AppContent />
+        </ContactHandlerProvider>
       </SaveDataProvider>
     </LogdInProvider>
   );

@@ -52,6 +52,7 @@ function GetTemplate() {
               className="w-40 flex justify-end"
               data={templates}
               seartchKey={["name", "sender_name"]}
+              titleText={"Sök efter templat i listan."}
               filteredData={setFilterdTemplate}
             />
           </div>
@@ -69,7 +70,7 @@ function GetTemplate() {
                   template={template}
                   selected={isSelected}
                   onSelected={() => {
-                    saveTemplate?.(templateId);
+                    saveTemplate?.(templateId, template.name);
                   }}
                 />
               );

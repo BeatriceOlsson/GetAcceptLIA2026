@@ -30,12 +30,15 @@ router.post('/', async (req, res) => {
         return res.status(400).json({message:'Dokumentet behöver ha ett namn med minst ett tecken'});
     }
 
-    if(!file_ur && !file_ids && !template_id) {
-        return res.status(400).json({message:'Behöver finas en fil eller template att skicka.'});
-    }
+    const trimValue = value.trim("");
+    const numberValue = Number(trimValue);
 
-    if(value===undefined || value===null) {
+    if(!value) {
         return res.status(400).json({message:'Behöver finnas ett värde i dokumentet.'});
+    }
+    
+    if(!file_ids && !template_id) {
+        return res.status(400).json({message:'Behöver finas en fil eller template att skicka.'});
     }
 
     if(!recipients || !Array.isArray(recipients) || recipients.length === 0) {

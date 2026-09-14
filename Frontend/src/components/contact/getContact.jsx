@@ -1,51 +1,35 @@
 import { useEffect, useState } from "react";
 import { useDockument } from "../../hooks/saveDataHook";
-import FetchBackend from "../fetchBackend";
 import { InputField } from "../smalComponents/inputFiled";
 import { ErrorMessage } from "../smalComponents/errorMessage";
+import { BlueButton } from "../smalComponents/blueButton";
+import { useContactHandeler } from "../../hooks/useContactHandlerHook";
 
-function GetContact({ userData = () => {}, returnToParent = false }) {
+function GetContact({
+  userData = () => {},
+  returnToParent = false,
+  onOpenContacts,
+}) {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
   const [errorMessage, setErrorMessage] = useState();
+  const [onFokusDropDown, setOnFokusDropDown] = useState(false);
   const { saveRecipient } = useDockument();
+  const { seartchUserLoop, respons, uppdateUserList } = useContactHandeler();
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearch(value);
-
-    if (!value.trim() || value.trim().length < 2) {
-      setResults([]);
-    }
   };
 
   useEffect(() => {
-    const value = search.trim();
-
-    if (!value || value.length < 2) {
-      return;
-    }
-
-    const timeoutId = setTimeout(async () => {
-      try {
-        const res = await FetchBackend({
-          url: `/userData?s=${encodeURIComponent(value)}`,
-        });
-
-        if (res instanceof Error) {
-          throw new Error("Kunde inte hämta kontakt");
-        }
-
-        const contacts = Array.isArray(res?.data) ? res.data : [];
-        setResults(contacts);
-      } catch (error) {
-        console.error("Användare kunde inte hittas", error);
-        setResults([]);
-      }
-    }, 600);
-
-    return () => clearTimeout(timeoutId);
+    seartchUserLoop(search);
   }, [search]);
+
+  useEffect(() => {
+    if (respons.length === 0) {
+      uppdateUserList();
+    }
+  }, []);
 
   const sendContackt = async (e, person) => {
     e.preventDefault();
@@ -62,9 +46,11 @@ function GetContact({ userData = () => {}, returnToParent = false }) {
     } else {
       saveRecipient(contact);
     }
-    setResults([]);
     setSearch("");
+    setOnFokusDropDown(false);
   };
+
+  const hasTyped = search.trim().length > 0;
 
   return (
     <div className=" flex flex-row gap-4 m-2">
@@ -76,15 +62,17 @@ function GetContact({ userData = () => {}, returnToParent = false }) {
             labelType={"text"}
             value={search}
             onChange={handleSearchChange}
+            onFocus={() => setOnFokusDropDown(true)}
+            onBlur={() => setOnFokusDropDown(false)}
           />
         </div>
-        {results.length > 0 ? (
+        {hasTyped && respons.length > 0 && onFokusDropDown ? (
           <ul className="absolute mt-16 bg-white rounded-lg ease-in-out z-50">
-            {results.map((person, index) => (
+            {respons.map((person, index) => (
               <li
                 key={`${person.userEmail || "contact"}-${index}`}
                 className="flex flex-row justify-between w-80 p-1 cursor-pointer"
-                onClick={(e) => {
+                onMouseDown={(e) => {
                   sendContackt(e, person);
                 }}
               >
@@ -97,6 +85,21 @@ function GetContact({ userData = () => {}, returnToParent = false }) {
           </ul>
         ) : (
           <ErrorMessage error={errorMessage} />
+        )}
+        {!hasTyped && !returnToParent && onFokusDropDown && (
+          <ul className="absolute mt-16 bg-white rounded-lg ease-in-out z-50 h-2 w-80">
+            <li>
+              <BlueButton
+                className="m-1"
+                buttonText={"Se kontackter"}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  onOpenContacts?.();
+                  setOnFokusDropDown(false);
+                }}
+              />
+            </li>
+          </ul>
         )}
       </form>
     </div>

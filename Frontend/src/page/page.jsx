@@ -14,12 +14,15 @@ import { useDockument } from "../hooks/saveDataHook";
 import ScrollIntoView from "../components/smalComponents/scrollIntoView";
 import { BigPopUppWindow } from "../components/smalComponents/biggPopUppWindow";
 import { DokumentDataPreview } from "../components/dockument/dokumentDataPreview";
+import { ShowAllContacts } from "../components/contact/showAllContacts";
 
 function Page() {
   const [addContactState, setAddContactState] = useState(false);
   const [imageLink, setImageLink] = useState(false);
   const [dockumentSent, setDokumentSent] = useState(false);
   const [showDocPreview, setShowDocPreview] = useState(false);
+  const [showAllConatcts, setShowAllContackts] = useState(false);
+  const [clearDockumentPreview, setClearDockumentPreview] = useState(0);
   const scrollToTopRef = useRef(null);
   const { resetDockument } = useDockument();
   const { logOut } = useLogdIn();
@@ -43,6 +46,11 @@ function Page() {
 
   const showDockumentPreview = () => {
     setShowDocPreview(!showDocPreview);
+    setClearDockumentPreview((prev) => prev + 1);
+  };
+
+  const showingAllContacts = () => {
+    setShowAllContackts((prev) => !prev);
   };
 
   return (
@@ -53,12 +61,18 @@ function Page() {
           title={"Följande  dockument har skickats:"}
           content={
             <div className="flex flex-col justify-center items-center w-full max-w-[80vw]">
-              <div className="">
-                <ShowDockumentData />
-                <h3 className="text-2xl">Mottagare</h3>
+              <ShowDockumentData
+                className="flex items-start"
+                dockumentSent={true}
+              />
+              <div className="flex justify-center">
+                <h3 className="text-2xl m-2">Mottagare</h3>
               </div>
               <div className="flex flex-row flex-wrap items-center justify-start gap-4 w-full">
-                <SelectedContact className="inline-flex flex-col" />
+                <SelectedContact
+                  dockumentSent={true}
+                  className="inline-flex flex-col"
+                />
               </div>
               <div className="flex justify-center mt-4">
                 <BlueButton
@@ -73,15 +87,21 @@ function Page() {
           isOpen={showDocPreview}
           content={
             <div>
-              <DokumentDataPreview />
+              <DokumentDataPreview key={clearDockumentPreview} />
               <BlueButton
-                className="fixed bottom-14 left-[45%]"
+                className="fixed bottom-14 left-[45%] xl:bottom-24"
                 buttonText="Stäng"
                 buttonClick={showDockumentPreview}
               />
             </div>
           }
         />
+        <div>
+          <ShowAllContacts
+            showPopUpp={showAllConatcts}
+            onClose={showingAllContacts}
+          />
+        </div>
         <div
           ref={scrollToTopRef}
           className="col-start-2 grid  grid-cols-[0.5fr_3fr] gap-3"
@@ -90,6 +110,7 @@ function Page() {
             <BlueButton
               buttonClick={logOut}
               buttonText={"Logga ut"}
+              onMouseDown={resetDockument}
               className="m-3"
             />
           </div>
@@ -109,7 +130,10 @@ function Page() {
             <NameAndValue />
           </div>
           <div>
-            <GetContact />
+            <GetContact
+              onOpenContacts={showingAllContacts}
+              onClose={showAllConatcts}
+            />
           </div>
           <div className="relative">
             <BlueButton
@@ -169,7 +193,7 @@ function Page() {
               <CreateDocument dockumentSent={dockumentSentOk} />
               <ShowDockumentData />
               <h3 className="text-2xl">Mottagare</h3>
-              <div className="overflow-y-auto pb-2 max-h-[calc(80vh-220px)] flex flex-col items-center gap-1">
+              <div className="overflow-y-auto pb-2 max-h-[calc(75vh_-_220px)] flex flex-col items-center gap-1">
                 <SelectedContact />
               </div>
             </div>

@@ -7,6 +7,7 @@ export function InputField({
   labelRef,
   value,
   onChange,
+  onFocus,
   name,
   className,
   width = "w-72",
@@ -24,6 +25,7 @@ export function InputField({
         ref={labelRef}
         value={value}
         onChange={onChange}
+        onFocus={onFocus}
         name={name}
         onBlur={onBlur}
         className={`rounded-lg border-2 border-gray-700 h-9 gap-2 p-2 focus:bg-orange-50 ${width} ${className}`}

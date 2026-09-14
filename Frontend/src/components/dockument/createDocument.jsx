@@ -39,11 +39,8 @@ function CreateDocument({ dockumentSent }) {
   };
 
   return (
-    <div className=" flex flex-row gap-4 m-2">
-      <form
-        onSubmit={handelSendingDocument}
-        className=" flex flex-col items-end justify-center relative b-1 w-100 gap-3"
-      >
+    <div className="flex flex-col items-end justify-center gap-4 m-2">
+      <form onSubmit={handelSendingDocument} className="b-1 w-100 gap-3">
         <BlueButton type={"submit"} buttonText={"Skicka"} />
         {errorMessage && <ErrorMessage error={errorMessage} />}
       </form>

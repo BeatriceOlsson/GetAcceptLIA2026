@@ -27,7 +27,7 @@ export function LogdInProvider({ children }) {
       });
 
       if (responseNode instanceof Error) {
-        console.log(responseNode.message || "Okänt fel uppstog");
+        console.error(responseNode.message || "Okänt fel uppstog");
         return;
       }
 

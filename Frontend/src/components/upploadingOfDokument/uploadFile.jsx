@@ -85,7 +85,7 @@ function UploadFile() {
           setErrorMasage(response);
         }
 
-        upploudedFile(response.details.file_id);
+        upploudedFile(response.details.file_id, files[0].file_name);
 
         instans.setFileState(successful[0].id, {
           progress: { uploadComplete: true, percentage: 100 },

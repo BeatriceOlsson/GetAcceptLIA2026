@@ -4,10 +4,12 @@ import { InputField } from "../smalComponents/inputFiled";
 import { useLogdIn } from "../../hooks/logInHook";
 import { ErrorMessage } from "../smalComponents/errorMessage";
 import FetchBackend from "../fetchBackend";
+import { useContactHandeler } from "../../hooks/useContactHandlerHook";
 
 function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const { logdIn } = useLogdIn();
+  const { uppdateUserList } = useContactHandeler();
 
   const emailInput = useRef(null);
   const passwordIput = useRef(null);
@@ -31,6 +33,7 @@ function Login() {
       }
 
       logdIn(responseNode.expireCookie);
+      uppdateUserList();
       setErrorMessage("");
     } catch (error) {
       setErrorMessage("Något gick fel vid inloggningen.");

@@ -7,7 +7,9 @@ export function SaveDataProvider({ children }) {
     value: "",
     recipients: [],
     template: null,
+    template_title: "",
     file_ids: null,
+    file_name: "",
   });
 
   const getRecipientEmail = useCallback((person) => {
@@ -89,17 +91,20 @@ export function SaveDataProvider({ children }) {
     [getRecipientEmail],
   );
 
-  const saveTemplate = useCallback((newTemplate) => {
+  const saveTemplate = useCallback((newTemplate, newTemplateTitle) => {
     setDokumentData((prev) => ({
       ...prev,
       template: prev.template === newTemplate ? null : newTemplate,
+      template_title:
+        prev.template_title === newTemplateTitle ? "" : newTemplateTitle,
     }));
   }, []);
 
-  const upploudedFile = useCallback((newFile) => {
+  const upploudedFile = useCallback((newFile, newFileName) => {
     setDokumentData((prev) => ({
       ...prev,
-      file: newFile ?? "",
+      file_ids: newFile ?? "",
+      file_name: newFileName ?? "",
     }));
   }, []);
 
@@ -125,7 +130,7 @@ export function SaveDataProvider({ children }) {
         role: person.role ?? "signer",
       })),
       template_id: dockumentData.template,
-      file_ids: dockumentData.file ?? "",
+      file_ids: dockumentData.file_ids ?? "",
     };
   }, [dockumentData]);
 
@@ -135,7 +140,9 @@ export function SaveDataProvider({ children }) {
       value: "",
       recipients: [],
       template: null,
+      template_title: "",
       file: null,
+      file_name: "",
     });
   }, []);
 

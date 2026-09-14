@@ -9,7 +9,6 @@ async function addSentDocument(documentRes) {
     const documentId = documentRes.id;
     const recipientsEmail = documentRes.recipients.map(r => r.email);
 
-    console.log(documentId, " " , recipientsEmail);
     try {
         const db = await dbConection;
 

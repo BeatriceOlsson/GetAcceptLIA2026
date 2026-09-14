@@ -30,10 +30,6 @@ async function getContact(userData) {
         const searchValue = (userData ?? '').trim();
         const db = await dbConection;
 
-        if (!searchValue) {
-            return [];
-        }
-
         const result = await db.request()
             .input('email', sql.VarChar(255), `%${searchValue}%`)
             .query(`SELECT * FROM userContact WHERE userEmail LIKE @email ORDER BY userEmail`);

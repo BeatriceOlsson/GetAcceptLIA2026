@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { InputField } from "./inputFiled";
 
-function SeartchFunction({ data = [], seartchKey = [], filteredData }) {
+function SeartchFunction({
+  data = [],
+  seartchKey = [],
+  filteredData,
+  titleText,
+}) {
   const [seartchData, setSeartchData] = useState("");
 
   const handelSeartchUpdate = (e) => {
@@ -39,6 +44,7 @@ function SeartchFunction({ data = [], seartchKey = [], filteredData }) {
       width={"w-60"}
       className={"mr-9"}
       value={seartchData}
+      titleText={titleText}
       onChange={handelSeartchUpdate}
     />
   );
