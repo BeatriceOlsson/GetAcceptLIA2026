@@ -15,6 +15,7 @@ import ScrollIntoView from "../components/smalComponents/scrollIntoView";
 import { BigPopUppWindow } from "../components/smalComponents/biggPopUppWindow";
 import { DokumentDataPreview } from "../components/dockument/dokumentDataPreview";
 import { ShowAllContacts } from "../components/contact/showAllContacts";
+import StatisticsDateSentDockument from "../components/statistics/statisticsDateSentDockument";
 
 function Page() {
   const [addContactState, setAddContactState] = useState(false);
@@ -23,6 +24,7 @@ function Page() {
   const [showDocPreview, setShowDocPreview] = useState(false);
   const [showAllConatcts, setShowAllContackts] = useState(false);
   const [clearDockumentPreview, setClearDockumentPreview] = useState(0);
+  const [showStatistics, setShowStatistics] = useState(false);
   const scrollToTopRef = useRef(null);
   const { resetDockument } = useDockument();
   const { logOut } = useLogdIn();
@@ -51,6 +53,9 @@ function Page() {
 
   const showingAllContacts = () => {
     setShowAllContackts((prev) => !prev);
+  };
+  const showPopUppStatistics = () => {
+    return setShowStatistics(!showStatistics);
   };
 
   return (
@@ -100,6 +105,20 @@ function Page() {
           <ShowAllContacts
             showPopUpp={showAllConatcts}
             onClose={showingAllContacts}
+          />
+        </div>
+        <div>
+          <BigPopUppWindow
+            isOpen={showStatistics}
+            content={
+              <div>
+                <StatisticsDateSentDockument />
+                <BlueButton
+                  buttonText="Stäng"
+                  buttonClick={showPopUppStatistics}
+                />
+              </div>
+            }
           />
         </div>
         <div
@@ -165,6 +184,11 @@ function Page() {
             <BlueButton
               buttonClick={showAlternativToTemplate}
               buttonText={"Bild eller Länk"}
+              className="m-1.5"
+            />
+            <BlueButton
+              buttonClick={showPopUppStatistics}
+              buttonText={"Se statistick"}
               className="m-1.5"
             />
             <div className="sticky top-40 m-2 h-0">

@@ -29,9 +29,11 @@ async function addSentDocument(documentRes) {
 
         const saved = await db.request()
          .input("documentId", sql.VarChar(50), documentId)
+         .input("docValue", sql.Decimal(10,2), documentRes.value)
+         .input("dateSent", sql.Date, documentRes.created_at)
          .query(
-            `INSERT INTO dockument (dockumentID)
-            VALUES (@documentId)`
+            `INSERT INTO dockument (dockumentID, dateSent, docValue)
+            VALUES (@documentId, @dateSent, @docValue)`
          )
 
         for(const email of recipientsEmail){
@@ -79,5 +81,6 @@ async function getDokumnetId() {
         logger.error(error);
     }
 }
+
 
 export {addSentDocument, getDokumentUser, getDokumnetId}; 
