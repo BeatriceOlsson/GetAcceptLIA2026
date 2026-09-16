@@ -1,6 +1,6 @@
 # Project during LIA2:
 
-During the ferst part of my LIA2 i was taskt with creating a one page where user culd create a dockumet and send it to recipients to be signd or red. I programed front-end, back-end and som sql along with the scope to build the funtions arownd GetAccept's API exept for handeling of recipients with was savde and fetch from local DB.
+During the first part of my LIA2 i was tasked with creating a one page where user could create a document and send it to recipients to be signed or red. To create the one page I workt on programing front-end, back-end and some SQL to handel data in local DB. Some of the functions needed to be built around GetAccept’s API and the handling of data.
 <br/>
 
 ## Funtional project requerierments:
