@@ -8,7 +8,8 @@ import userDataRouter from './routes/userData.js'
 import createDocumentRouter from './routes/createDocument.js';
 import getTemplateRouter from './routes/getTemplate.js';
 import createFileRouter from './routes/createFile.js';
-import isLogdInRouter from './routes/isLogdIn.js'
+import isLogdInRouter from './routes/isLogdIn.js';
+import statistics from './routes/statistics.js';
 import cookieParser from 'cookie-parser';
 
 dotenv.config();
@@ -35,6 +36,7 @@ app.use('/userData', userDataRouter);
 app.use('/createDocument', createDocumentRouter);
 app.use('/template', getTemplateRouter);
 app.use('/file', createFileRouter);
+app.use('/statistics', statistics);
 
 const port = process.env.PORT || 3000;
 
